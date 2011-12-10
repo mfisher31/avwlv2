@@ -1,0 +1,35 @@
+#ifndef src_hztovc_peg
+#define src_hztovc_peg
+
+
+#ifndef PEG_STRUCT
+#define PEG_STRUCT
+typedef struct {
+  float min;
+  float max;
+  float default_value;
+  char toggled;
+  char integer;
+  char logarithmic;
+} peg_data_t;
+#endif
+
+/* <http://lv2plug.in/plugins/avw/hztovc> */
+
+static const char p_uri[] = "http://lv2plug.in/plugins/avw/hztovc";
+
+enum p_port_enum {
+  p_octaveOffset,
+  p_input,
+  p_output,
+  p_n_ports
+};
+
+static const peg_data_t p_ports[] = {
+  { -3, 3, 0, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+};
+
+
+#endif /* src_hztovc_peg */
