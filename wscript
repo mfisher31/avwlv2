@@ -125,6 +125,7 @@ def build(bld):
 				  
 	plugins_gui = '''
 	vco2_gui
+	ad_gui
     '''.split()
 
     # Build plugin libraries
