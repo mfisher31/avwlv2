@@ -1,3 +1,9 @@
+0.0.6:
+	* Basic GUI for Analog Driver and Envelop
+
+0.0.5:
+	* Bug correction in wscript
+
 0.0.4:
 	* GUI for VCO2
 

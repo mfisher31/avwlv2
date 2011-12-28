@@ -25,6 +25,7 @@ def configure(conf):
     autowaf.check_pkg(conf, 'lv2-plugin', uselib_store='LV2-PLUGIN', atleast_version='1.0.4')
     autowaf.check_pkg(conf, 'lv2-gui', uselib_store='LV2-GUI', atleast_version='1.0.4')		
     autowaf.check_pkg(conf, 'gtk+-2.0', uselib_store='GTK2', atleast_version='2.18.0')
+    autowaf.check_pkg(conf, 'cairo', uselib_store='CAIRO', atleast_version='1.0.0')
     autowaf.check_header(conf, 'c', 'lv2/lv2plug.in/ns/lv2core/lv2.h')
     autowaf.check_header(conf, 'cxx', 'lv2-c++-tools/lv2.h')
 
@@ -65,7 +66,7 @@ def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + ['src/synthdata.cpp']
+    obj.source       = source + ['src/env_gui_scope.cpp']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -126,6 +127,7 @@ def build(bld):
 	plugins_gui = '''
 	vco2_gui
 	ad_gui
+	env_gui
     '''.split()
 
     # Build plugin libraries
@@ -136,6 +138,6 @@ def build(bld):
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="%s"' % i,
                   '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-				  ['LV2-GUI', 'GTK2'])
+				  ['LV2-GUI', 'GTK2', 'CAIRO'])
 				  
 	
