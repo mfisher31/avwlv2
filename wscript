@@ -114,6 +114,7 @@ def build(bld):
 	vctohz
 	cvs
 	delay
+	dynamicwaves
     '''.split()
 
     # Build plugin libraries

@@ -83,3 +83,8 @@
 	lv2:binary <delay.so>  ;
 	rdfs:seeAlso <delay.ttl> .
 	
+<http://lv2plug.in/plugins/avw/dynamicwaves>
+	a lv2:Plugin ;
+	lv2:binary <dynamicwaves.so>  ;
+	rdfs:seeAlso <dynamicwaves.ttl> .
+	
