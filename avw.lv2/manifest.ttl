@@ -93,6 +93,11 @@
 	lv2:binary <advenv.so>  ;
 	rdfs:seeAlso <advenv.ttl> .	
 	
+<http://lv2plug.in/plugins/avw/cvs>
+	a lv2:Plugin ;
+	lv2:binary <cvs.so>  ;
+	rdfs:seeAlso <cvs.ttl> .	
+	
 # Explanation
 #
 # In short, this declares that the resource with URI

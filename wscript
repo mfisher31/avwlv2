@@ -112,6 +112,7 @@ def build(bld):
 	vcalin
 	vcf
 	vctohz
+	cvs
     '''.split()
 
     # Build plugin libraries

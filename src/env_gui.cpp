@@ -61,6 +61,15 @@ EnvGUI::EnvGUI(const std::string& URI)
 	m_envScope = new EnvGUIScope();
 	p_graphFrame->add(*m_envScope);
 
+	m_envScope->m_attackValue = m_scaleAttack->get_value();
+	m_envScope->m_decayValue = m_scaleDecay->get_value();
+	m_envScope->m_sustainValue = m_scaleSustain->get_value();
+	m_envScope->m_releaseValue = m_scaleRelease->get_value();
+	m_envScope->m_delayValue = m_scaleDelay->get_value();
+	m_envScope->m_holdValue = m_scaleHold->get_value();
+
+	m_envScope->Redraw();
+
 	Gtk::manage(p_mainWidget);
 }
 
