@@ -113,6 +113,7 @@ def build(bld):
 	vcf
 	vctohz
 	cvs
+	delay
     '''.split()
 
     # Build plugin libraries

@@ -2,6 +2,7 @@
 	* Basic GUI for Analog Driver and Envelop
 	* Ported:
 		- CV Source
+		- Delay
 
 0.0.5:
 	* Bug correction in wscript
