@@ -4,6 +4,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ll: <http://ll-plugins.nongnu.org/lv2/namespace#> .
+@prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://lv2plug.in/plugins/avw/advenv/gui>
+  	a guiext:GtkUI ;
+  	guiext:binary <advenv_gui.so> ;
+  	guiext:requiredFeature guiext:makeResident .
 
 <http://lv2plug.in/plugins/avw/advenv>
 	a lv2:Plugin ,
@@ -15,6 +21,7 @@
 	doap:name "AMS Advanced Envelop" ;
 	doap:license <http://opensource.org/licenses/isc-license> ;
 	ll:pegName "p" ;
+	guiext:ui <http://lv2plug.in/plugins/avw/advenv/gui> ;
 	lv2:property lv2:hardRtCapable ;
 	lv2:port [
 		a lv2:AudioPort, lv2:InputPort ;

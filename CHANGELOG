@@ -1,9 +1,9 @@
 0.0.6:
-	* Basic GUI for Analog Driver and Envelop
+	* Basic GUI for Analog Driver, Envelop and Advanced Envelop
 	* Ported:
 		- CV Source
 		- Delay
-		- Dynamic Waves
+		- Dynamic Waves (4 Osc)
 
 0.0.5:
 	* Bug correction in wscript

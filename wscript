@@ -60,13 +60,13 @@ def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     data_file = '%s.ttl' % name
     bld.install_files('${LV2DIR}/' + bundle, os.path.join(bundle, data_file))
 
-def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
+def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_source=[]):
     penv = bld.env.derive()
     penv['cshlib_PATTERN']   = bld.env['pluginlib_PATTERN']
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + ['src/env_gui_scope.cpp']
+    obj.source       = source + add_source
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -130,7 +130,6 @@ def build(bld):
 	plugins_gui = '''
 	vco2_gui
 	ad_gui
-	env_gui
     '''.split()
 
     # Build plugin libraries
@@ -141,6 +140,21 @@ def build(bld):
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="%s"' % i,
                   '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-				  ['LV2-GUI', 'GTK2', 'CAIRO'])
+				  ['LV2-GUI', 'GTK2', 'CAIRO'], [])
 				  
-	
+	build_plugin_gui(bld, 'cxx', 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
+                  ['-DPLUGIN_CLASS=env_gui',
+				  '-fPIC', 
+                  '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+                  '-DPLUGIN_URI_SUFFIX="env_gui"',
+                  '-DPLUGIN_HEADER="src/env_gui.hpp"'],
+				  ['LV2-GUI', 'GTK2', 'CAIRO'], ['src/env_gui_scope.cpp'])
+				  
+	build_plugin_gui(bld, 'cxx', 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
+                  ['-DPLUGIN_CLASS=advenv_gui',
+				  '-fPIC', 
+                  '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+                  '-DPLUGIN_URI_SUFFIX="advenv_gui"',
+                  '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
+				  ['LV2-GUI', 'GTK2', 'CAIRO'], ['src/advenv_gui_scope.cpp'])
+				  
