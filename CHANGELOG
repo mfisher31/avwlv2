@@ -1,3 +1,10 @@
+0.0.7:
+	* License updated
+	* Ported:
+		- Absolute
+		- Inv
+		- Jack Sync LFO
+
 0.0.6:
 	* Basic GUI for Analog Driver, Envelop and Advanced Envelop
 	* Ported:

@@ -105,7 +105,7 @@ void Lfo::run(uint32_t nframes)
 			p(p_triangle)[l2_out] = old_t;		//	data[1][l1][l2_out] = old_t;
 			p(p_sawUp)[l2_out] = old_sa;		//	data[2][l1][l2_out] = old_sa;
 			p(p_sawDown)[l2_out] = -old_sa;		//	data[3][l1][l2_out] = -old_sa;
-			p(p_rectangle)[l2_out] = old_r;		//	data[4][l1][l2_out] = old_r;
+			p(p_rectangle)[l2_out] = -old_r;		//	data[4][l1][l2_out] = old_r;
 			p(p_sampleAndHold)[l2_out] = old_sh;//	data[5][l1][l2_out] = old_sh;
 			l2_out++;
 		}

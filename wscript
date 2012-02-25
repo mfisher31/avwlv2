@@ -26,7 +26,8 @@ def configure(conf):
     autowaf.check_pkg(conf, 'gtk+-2.0', uselib_store='GTK2', atleast_version='2.24.0')
     autowaf.check_pkg(conf, 'cairo', uselib_store='CAIRO', atleast_version='1.0.0')
     autowaf.check_pkg(conf, 'lv2-plugin', uselib_store='LV2-PLUGIN', atleast_version='1.0.4')
-    autowaf.check_pkg(conf, 'lv2-gui', uselib_store='LV2-GUI', atleast_version='1.0.4')		
+    autowaf.check_pkg(conf, 'lv2-gui', uselib_store='LV2-GUI', atleast_version='1.0.4')	
+    autowaf.check_pkg(conf, 'jack', uselib_store='JACK', atleast_version='0.120.0')	
     autowaf.check_header(conf, 'c', 'lv2/lv2plug.in/ns/lv2core/lv2.h')
     autowaf.check_header(conf, 'cxx', 'lv2-c++-tools/lv2.h')
 
@@ -116,6 +117,9 @@ def build(bld):
 	cvs
 	delay
 	dynamicwaves
+	absolute
+	inv
+	jacklfo
     '''.split()
 
     # Build plugin libraries
@@ -126,7 +130,7 @@ def build(bld):
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="%s"' % i,
                   '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-				  ['LV2-PLUGIN'])
+				  ['LV2-PLUGIN', 'JACK'])
 				  
 	plugins_gui = '''
 	vco2_gui

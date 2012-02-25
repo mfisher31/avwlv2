@@ -1,0 +1,47 @@
+#ifndef ___src_jacklfo_peg
+#define ___src_jacklfo_peg
+
+
+#ifndef PEG_STRUCT
+#define PEG_STRUCT
+typedef struct {
+  float min;
+  float max;
+  float default_value;
+  char toggled;
+  char integer;
+  char logarithmic;
+} peg_data_t;
+#endif
+
+/* <http://lv2plug.in/plugins/avw/jacklfo> */
+
+static const char p_uri[] = "http://lv2plug.in/plugins/avw/jacklfo";
+
+enum p_port_enum {
+  p_reset,
+  p_frequency,
+  p_phi0,
+  p_sine,
+  p_triangle,
+  p_sawUp,
+  p_sawDown,
+  p_rectangle,
+  p_sampleAndHold,
+  p_n_ports
+};
+
+static const peg_data_t p_ports[] = {
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { 0, 100, 5, 0, 0, 0 }, 
+  { 0, 6.28, 0, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+};
+
+
+#endif /* ___src_jacklfo_peg */
