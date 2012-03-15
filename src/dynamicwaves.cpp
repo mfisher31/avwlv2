@@ -436,5 +436,5 @@ void DynamicWaves::run(uint32_t nframes)
 	}
 }
 
-static int _ = DynamicWaves::register_class("http://lv2plug.in/plugins/avw/dynamicwaves");
+static int _ = DynamicWaves::register_class("http://avwlv2.sourceforge.net/plugins/avw/dynamicwaves");
 

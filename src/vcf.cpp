@@ -415,5 +415,5 @@ void Vcf::run(uint32_t nframes)
 	}
 }
 
-static int _ = Vcf::register_class("http://lv2plug.in/plugins/avw/vcf");
+static int _ = Vcf::register_class("http://avwlv2.sourceforge.net/plugins/avw/vcf");
 

@@ -120,6 +120,7 @@ def build(bld):
 	absolute
 	inv
 	jacklfo
+	tranches
     '''.split()
 
     # Build plugin libraries

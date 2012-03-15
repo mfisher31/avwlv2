@@ -5,7 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ll: <http://ll-plugins.nongnu.org/lv2/namespace#> .
 
-<http://lv2plug.in/plugins/avw/jacklfo>
+<http://avwlv2.sourceforge.net/plugins/avw/jacklfo>
 	a lv2:Plugin ,
 		lv2:JACKLFO ;
 	doap:maintainer [

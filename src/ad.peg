@@ -14,9 +14,9 @@ typedef struct {
 } peg_data_t;
 #endif
 
-/* <http://lv2plug.in/plugins/avw/ad> */
+/* <http://avwlv2.sourceforge.net/plugins/avw/ad> */
 
-static const char p_uri[] = "http://lv2plug.in/plugins/avw/ad";
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/ad";
 
 enum p_port_enum {
   p_cvin,

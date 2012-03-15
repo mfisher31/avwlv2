@@ -154,5 +154,5 @@ void Env::run(uint32_t nframes)
 	}
 }
 
-static int _ = Env::register_class("http://lv2plug.in/plugins/avw/env");
+static int _ = Env::register_class("http://avwlv2.sourceforge.net/plugins/avw/env");
 

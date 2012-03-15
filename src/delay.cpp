@@ -52,5 +52,5 @@ void Delay::run(uint32_t nframes)
 	}
 }
 
-static int _ = Delay::register_class("http://lv2plug.in/plugins/avw/delay");
+static int _ = Delay::register_class("http://avwlv2.sourceforge.net/plugins/avw/delay");
 

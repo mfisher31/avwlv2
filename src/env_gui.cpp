@@ -123,4 +123,4 @@ void EnvGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, co
 	}
 }
 
-static int _ = EnvGUI::register_class("http://lv2plug.in/plugins/avw/env/gui");
+static int _ = EnvGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/env/gui");

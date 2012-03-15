@@ -118,4 +118,4 @@ void Vco2GUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, c
 	}
 }
 
-static int _ = Vco2GUI::register_class("http://lv2plug.in/plugins/avw/vco2/gui");
+static int _ = Vco2GUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/vco2/gui");

@@ -48,5 +48,5 @@ void VcToHz::run(uint32_t nframes)
 	}
 }
 
-static int _ = VcToHz::register_class("http://lv2plug.in/plugins/avw/vctohz");
+static int _ = VcToHz::register_class("http://avwlv2.sourceforge.net/plugins/avw/vctohz");
 

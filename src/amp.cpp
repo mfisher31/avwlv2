@@ -26,5 +26,5 @@ void Amp::run(uint32_t nframes)
 	}
 }
 
-static int _ = Amp::register_class("http://lv2plug.in/plugins/avw/amp");
+static int _ = Amp::register_class("http://avwlv2.sourceforge.net/plugins/avw/amp");
 

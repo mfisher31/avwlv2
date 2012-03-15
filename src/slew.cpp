@@ -71,5 +71,5 @@ void Slew::run(uint32_t nframes)
 	}
 }
 
-static int _ = Slew::register_class("http://lv2plug.in/plugins/avw/slew");
+static int _ = Slew::register_class("http://avwlv2.sourceforge.net/plugins/avw/slew");
 

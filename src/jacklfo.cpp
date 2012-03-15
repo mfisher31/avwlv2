@@ -134,4 +134,4 @@ void JackLfo::run(uint32_t nframes)
 	} while (len);
 }
 
-static int _ = JackLfo::register_class("http://lv2plug.in/plugins/avw/jacklfo");
+static int _ = JackLfo::register_class("http://avwlv2.sourceforge.net/plugins/avw/jacklfo");

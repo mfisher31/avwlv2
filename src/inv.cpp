@@ -24,5 +24,5 @@ void Inv::run(uint32_t nframes)
 	}
 }
 
-static int _ = Inv::register_class("http://lv2plug.in/plugins/avw/inv");
+static int _ = Inv::register_class("http://avwlv2.sourceforge.net/plugins/avw/inv");
 

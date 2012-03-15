@@ -14,9 +14,9 @@ typedef struct {
 } peg_data_t;
 #endif
 
-/* <http://lv2plug.in/plugins/avw/delay> */
+/* <http://avwlv2.sourceforge.net/plugins/avw/delay> */
 
-static const char p_uri[] = "http://lv2plug.in/plugins/avw/delay";
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/delay";
 
 enum p_port_enum {
   p_delay,

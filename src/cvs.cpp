@@ -40,4 +40,4 @@ void Cvs::run(uint32_t nframes)
 	}
 }
 
-static int _ = Cvs::register_class("http://lv2plug.in/plugins/avw/cvs");
+static int _ = Cvs::register_class("http://avwlv2.sourceforge.net/plugins/avw/cvs");

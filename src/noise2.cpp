@@ -86,5 +86,5 @@ void Noise2::run(uint32_t nframes)
 	}
 }
 
-static int _ = Noise2::register_class("http://lv2plug.in/plugins/avw/noise2");
+static int _ = Noise2::register_class("http://avwlv2.sourceforge.net/plugins/avw/noise2");
 

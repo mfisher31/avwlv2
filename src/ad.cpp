@@ -104,5 +104,5 @@ void Ad::run(uint32_t nframes)
 	}
 }
 
-static int _ = Ad::register_class("http://lv2plug.in/plugins/avw/ad");
+static int _ = Ad::register_class("http://avwlv2.sourceforge.net/plugins/avw/ad");
 

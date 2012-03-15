@@ -45,5 +45,5 @@ void Mixer::run(uint32_t nframes)
 	}
 }
 
-static int _ = Mixer::register_class("http://lv2plug.in/plugins/avw/mixer");
+static int _ = Mixer::register_class("http://avwlv2.sourceforge.net/plugins/avw/mixer");
 

@@ -112,4 +112,4 @@ void Lfo::run(uint32_t nframes)
 	} while(len);
 }
 
-static int _ = Lfo::register_class("http://lv2plug.in/plugins/avw/lfo");
+static int _ = Lfo::register_class("http://avwlv2.sourceforge.net/plugins/avw/lfo");

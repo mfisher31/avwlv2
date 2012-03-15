@@ -31,5 +31,5 @@ void Absolute::run(uint32_t nframes)
 	}
 }
 
-static int _ = Absolute::register_class("http://lv2plug.in/plugins/avw/absolute");
+static int _ = Absolute::register_class("http://avwlv2.sourceforge.net/plugins/avw/absolute");
 

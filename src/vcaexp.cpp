@@ -54,4 +54,4 @@ void VcaExp::run(uint32_t nframes)
 	}
 }
 
-static int _ = VcaExp::register_class("http://lv2plug.in/plugins/avw/vcaexp");
+static int _ = VcaExp::register_class("http://avwlv2.sourceforge.net/plugins/avw/vcaexp");

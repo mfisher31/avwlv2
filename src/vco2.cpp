@@ -355,5 +355,5 @@ void Vco2::run(uint32_t nframes)
 	}
 }
 
-static int _ = Vco2::register_class("http://lv2plug.in/plugins/avw/vco2");
+static int _ = Vco2::register_class("http://avwlv2.sourceforge.net/plugins/avw/vco2");
 
