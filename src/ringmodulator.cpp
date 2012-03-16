@@ -26,5 +26,5 @@ void RingModulator::run(uint32_t nframes)
 	}
 }
 
-static int _ = Amp::register_class("http://avwlv2.sourceforge.net/plugins/avw/ringmodulator");
+static int _ = RingModulator::register_class("http://avwlv2.sourceforge.net/plugins/avw/ringmodulator");
 
