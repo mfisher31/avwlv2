@@ -121,6 +121,7 @@ def build(bld):
 	inv
 	jacklfo
 	tranches
+	ringmodulator
     '''.split()
 
     # Build plugin libraries

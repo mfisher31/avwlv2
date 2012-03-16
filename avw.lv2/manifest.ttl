@@ -108,3 +108,8 @@
 	lv2:binary <tranches.so>  ;
 	rdfs:seeAlso <tranches.ttl> .
 	
+<http://avwlv2.sourceforge.net/plugins/avw/ringmodulator>
+	a lv2:Plugin ;
+	lv2:binary <ringmodulator.so>  ;
+	rdfs:seeAlso <ringmodulator.ttl> .
+	

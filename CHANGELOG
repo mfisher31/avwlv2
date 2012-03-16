@@ -1,12 +1,14 @@
 0.0.8:
 	* VCF GUI
+	* Ported from AMS:
+		- Ring Modulator
 
 0.0.7:
 	* License updated
-	* Ported:
+	* Ported from AMS:
 		- Absolute
 		- Inv
-		- Jack Sync LFO
+	* Jack sync LFO based on the AMS one
 	* Ported from Tranches (http://hitmuri.net/tardigrade/index.php/En/News)
 		- Tranches
 	* URI modified to http://avwlv2.sourceforge.net
