@@ -1,58 +1,20 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix ctx: <http://lv2plug.in/ns/ext/contexts#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix ingen: <http://drobilla.net/ns/ingen#> .
-@prefix ingenui: <http://drobilla.net/ns/ingenuity#> .
 @prefix lv2: <http://lv2plug.in/ns/lv2core#> .
 @prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
-@prefix ctx: <http://lv2plug.in/ns/ext/contexts#> .
-@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
-@prefix midi: <http://drobilla.net/ns/ext/midi#> .
+@prefix midi: <http://lv2plug.in/ns/ext/midi#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
-
-<>
-	ingen:connection [
-		ingen:destination <Note/input> ;
-		ingen:source <control_in>
-	] , [
-		ingen:destination <vcalin/gain1Data> ;
-		ingen:source <env/out>
-	] , [
-		ingen:destination <vcalin/in1Data> ;
-		ingen:source <vco2/out>
-	] , [
-		ingen:destination <audio_out_1> ;
-		ingen:source <vcalin/out>
-	] , [
-		ingen:destination <hztovc/input> ;
-		ingen:source <Note/frequency>
-	] , [
-		ingen:destination <env/gate> ;
-		ingen:source <Note/gate>
-	] , [
-		ingen:destination <env/retrigger> ;
-		ingen:source <Note/trigger>
-	] ;
-	ingen:node <Note> ,
-		<env> ,
-		<hztovc> ,
-		<vcalin> ,
-		<vco2> ;
-	ingen:polyphony 1 ;
-	lv2:port <audio_out_1> ,
-		<control_in> ,
-		<control_out> ;
-	lv2:symbol "ingen_patch" ;
-	doap:name "ingen_patch" ;
-	a ingen:Patch ,
-		lv2:Plugin .
 
 <Note>
-	ingenui:canvas-x 118.00000000 ;
-	ingenui:canvas-y 95.00000000 ;
+	ingen:canvasX 114.90000153 ;
+	ingen:canvasY 376.5 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 118.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 95.0 ;
 	lv2:port <Note/frequency> ,
 		<Note/gate> ,
 		<Note/input> ,
@@ -94,17 +56,19 @@
 
 <Note/velocity>
 	lv2:index 2 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:name "Velocity" ;
 	lv2:symbol "velocity" ;
 	a lv2:AudioPort ,
 		lv2:OutputPort .
 
 <audio_out_1>
+	ingen:canvasX 888.59997559 ;
+	ingen:canvasY 478.79998779 ;
 	ingen:polyphonic false ;
-	ingenui:canvas-x 877.00000000 ;
-	ingenui:canvas-y 138.00000000 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 877.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 138.0 ;
 	lv2:index 2 ;
 	lv2:name "Audio Out 1" ;
 	lv2:symbol "audio_out_1" ;
@@ -112,14 +76,19 @@
 		lv2:OutputPort .
 
 <control_in>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 365.5 ;
 	ingen:polyphonic false ;
 	lv2:index 0 ;
 	lv2:name "Control" ;
+	lv2:portProperty lv2:connectionOptional ;
 	lv2:symbol "control_in" ;
 	a lv2ev:EventPort ,
 		lv2:InputPort .
 
 <control_out>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 149.8999939 ;
 	ingen:polyphonic false ;
 	lv2:index 1 ;
 	lv2:name "Control" ;
@@ -128,10 +97,12 @@
 		lv2:OutputPort .
 
 <env>
+	ingen:canvasX 241.3999939 ;
+	ingen:canvasY 159.80000305 ;
 	ingen:polyphonic false ;
 	ingen:selected false ;
-	ingenui:canvas-x 359.00000000 ;
-	ingenui:canvas-y 12.00000000 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 359.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 12.0 ;
 	lv2:port <env/attack> ,
 		<env/decay> ,
 		<env/delay> ,
@@ -144,31 +115,31 @@
 		<env/sustain> ,
 		<env/timeScale> ;
 	lv2:symbol "env" ;
-	rdf:instanceOf <http://lv2plug.in/plugins/avw/env> ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/env> ;
 	a ingen:Node .
 
 <env/attack>
-	ingen:value 0.05000000 ;
+	ingen:value 0.05 ;
 	lv2:index 2 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "attack" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <env/decay>
-	ingen:value 0.10000000 ;
+	ingen:value 0.1 ;
 	lv2:index 3 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "decay" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <env/delay>
 	lv2:index 6 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "delay" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -180,10 +151,10 @@
 		lv2:InputPort .
 
 <env/hold>
-	ingen:value 0.02000000 ;
+	ingen:value 0.02 ;
 	lv2:index 7 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "hold" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -201,10 +172,10 @@
 		lv2:OutputPort .
 
 <env/release>
-	ingen:value 0.05000000 ;
+	ingen:value 0.05 ;
 	lv2:index 5 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "release" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -218,31 +189,33 @@
 <env/sustain>
 	ingen:value 0.69999999 ;
 	lv2:index 4 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "sustain" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <env/timeScale>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 8 ;
-	lv2:maximum 10.00000000 ;
-	lv2:minimum 1.00000000 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 1.0 ;
 	lv2:symbol "timeScale" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <hztovc>
+	ingen:canvasX 235.8999939 ;
+	ingen:canvasY 45.40000153 ;
 	ingen:polyphonic false ;
 	ingen:selected false ;
-	ingenui:canvas-x 211.00000000 ;
-	ingenui:canvas-y 218.00000000 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 211.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 218.0 ;
 	lv2:port <hztovc/input> ,
 		<hztovc/octaveOffset> ,
 		<hztovc/output> ;
 	lv2:symbol "hztovc" ;
-	rdf:instanceOf <http://lv2plug.in/plugins/avw/hztovc> ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/hztovc> ;
 	a ingen:Node .
 
 <hztovc/input>
@@ -252,10 +225,10 @@
 		lv2:InputPort .
 
 <hztovc/octaveOffset>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 0 ;
-	lv2:maximum 3.00000000 ;
-	lv2:minimum -3.00000000 ;
+	lv2:maximum 3.0 ;
+	lv2:minimum -3.0 ;
 	lv2:symbol "octaveOffset" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -266,11 +239,54 @@
 	a lv2:AudioPort ,
 		lv2:OutputPort .
 
+<>
+	ingen:connection [
+		ingen:destination <vco2/freq> ;
+		ingen:source <hztovc/output> ;
+	] , [
+		ingen:destination <audio_out_1> ;
+		ingen:source <vcalin/out> ;
+	] , [
+		ingen:destination <hztovc/input> ;
+		ingen:source <Note/frequency> ;
+	] , [
+		ingen:destination <vcalin/gain1Data> ;
+		ingen:source <env/out> ;
+	] , [
+		ingen:destination <vcalin/in1Data> ;
+		ingen:source <vco2/out> ;
+	] , [
+		ingen:destination <Note/input> ;
+		ingen:source <control_in> ;
+	] , [
+		ingen:destination <env/gate> ;
+		ingen:source <Note/gate> ;
+	] , [
+		ingen:destination <env/retrigger> ;
+		ingen:source <Note/trigger> ;
+	] ;
+	ingen:node <Note> ,
+		<env> ,
+		<hztovc> ,
+		<vcalin> ,
+		<vco2> ;
+	ingen:polyphony 1 ;
+	lv2:extensionData <http://lv2plug.in/ns/ext/state#Interface> ;
+	lv2:port <audio_out_1> ,
+		<control_in> ,
+		<control_out> ;
+	lv2:symbol "ingen_patch" ;
+	doap:name "ingen_patch" ;
+	a ingen:Patch ,
+		lv2:Plugin .
+
 <vcalin>
+	ingen:canvasX 754.20001221 ;
+	ingen:canvasY 321.5 ;
 	ingen:polyphonic false ;
-	ingen:selected true ;
-	ingenui:canvas-x 623.00000000 ;
-	ingenui:canvas-y 114.00000000 ;
+	ingen:selected 1 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 623.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 114.0 ;
 	lv2:port <vcalin/gain1> ,
 		<vcalin/gain1Data> ,
 		<vcalin/gain2> ,
@@ -282,13 +298,13 @@
 		<vcalin/out> ,
 		<vcalin/outputLevel> ;
 	lv2:symbol "vcalin" ;
-	rdf:instanceOf <http://lv2plug.in/plugins/avw/vcalin> ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vcalin> ;
 	a ingen:Node .
 
 <vcalin/gain1>
 	lv2:index 4 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "gain1" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -301,8 +317,8 @@
 
 <vcalin/gain2>
 	lv2:index 5 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "gain2" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -314,10 +330,10 @@
 		lv2:InputPort .
 
 <vcalin/in1>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 6 ;
-	lv2:maximum 2.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "in1" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -329,10 +345,10 @@
 		lv2:InputPort .
 
 <vcalin/in2>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 7 ;
-	lv2:maximum 2.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "in2" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -350,19 +366,21 @@
 		lv2:OutputPort .
 
 <vcalin/outputLevel>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 8 ;
-	lv2:maximum 2.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "outputLevel" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <vco2>
+	ingen:canvasX 422.8999939 ;
+	ingen:canvasY 63.0 ;
 	ingen:polyphonic false ;
 	ingen:selected false ;
-	ingenui:canvas-x 353.00000000 ;
-	ingenui:canvas-y 212.00000000 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 353.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 212.0 ;
 	lv2:port <vco2/expFM> ,
 		<vco2/expFMGain> ,
 		<vco2/freq> ,
@@ -379,7 +397,7 @@
 		<vco2/tune> ,
 		<vco2/waveForm> ;
 	lv2:symbol "vco2" ;
-	rdf:instanceOf <http://lv2plug.in/plugins/avw/vco2> ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
 	a ingen:Node .
 
 <vco2/expFM>
@@ -390,8 +408,8 @@
 
 <vco2/expFMGain>
 	lv2:index 12 ;
-	lv2:maximum 10.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "expFMGain" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -403,10 +421,10 @@
 		lv2:InputPort .
 
 <vco2/harmonic>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 7 ;
-	lv2:maximum 16.00000000 ;
-	lv2:minimum 1.00000000 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
 	lv2:symbol "harmonic" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -419,17 +437,17 @@
 
 <vco2/linFMGain>
 	lv2:index 13 ;
-	lv2:maximum 10.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "linFMGain" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <vco2/octave>
-	ingen:value 3.00000000 ;
+	ingen:value 3.0 ;
 	lv2:index 5 ;
-	lv2:maximum 6.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "octave" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -443,24 +461,24 @@
 <vco2/phi0>
 	lv2:index 11 ;
 	lv2:maximum 6.28299999 ;
-	lv2:minimum 0.00000000 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "phi0" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <vco2/pw0>
-	ingen:value 0.50000000 ;
+	ingen:value 0.5 ;
 	lv2:index 9 ;
 	lv2:maximum 0.89999998 ;
-	lv2:minimum 0.10000000 ;
+	lv2:minimum 0.1 ;
 	lv2:symbol "pw0" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <vco2/pwGain>
 	lv2:index 10 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "pwGain" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
@@ -472,26 +490,26 @@
 		lv2:InputPort .
 
 <vco2/subharmonic>
-	ingen:value 1.00000000 ;
+	ingen:value 1.0 ;
 	lv2:index 8 ;
-	lv2:maximum 16.00000000 ;
-	lv2:minimum 1.00000000 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
 	lv2:symbol "subharmonic" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <vco2/tune>
 	lv2:index 6 ;
-	lv2:maximum 1.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "tune" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
 <vco2/waveForm>
 	lv2:index 4 ;
-	lv2:maximum 6.00000000 ;
-	lv2:minimum 0.00000000 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
 	lv2:symbol "waveForm" ;
 	a lv2:ControlPort ,
 		lv2:InputPort .

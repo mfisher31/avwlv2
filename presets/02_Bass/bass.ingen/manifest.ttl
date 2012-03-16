@@ -1,17 +1,14 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix ctx: <http://lv2plug.in/ns/ext/contexts#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix ingen: <http://drobilla.net/ns/ingen#> .
-@prefix ingenui: <http://drobilla.net/ns/ingenuity#> .
 @prefix lv2: <http://lv2plug.in/ns/lv2core#> .
 @prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
-@prefix ctx: <http://lv2plug.in/ns/ext/contexts#> .
-@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
-@prefix midi: <http://drobilla.net/ns/ext/midi#> .
+@prefix midi: <http://lv2plug.in/ns/ext/midi#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
 
 <bass.ttl>
 	lv2:binary <libingen_lv2.so> ;
