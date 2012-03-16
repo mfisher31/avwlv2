@@ -122,6 +122,7 @@ def build(bld):
 	jacklfo
 	tranches
 	ringmodulator
+	percussiveenv
     '''.split()
 
     # Build plugin libraries

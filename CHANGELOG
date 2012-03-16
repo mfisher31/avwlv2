@@ -2,6 +2,7 @@
 	* VCF GUI
 	* Ported from AMS:
 		- Ring Modulator
+	* Percussive Env based on the AMS LFO
 
 0.0.7:
 	* License updated

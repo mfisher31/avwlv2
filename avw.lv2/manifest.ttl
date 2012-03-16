@@ -113,3 +113,8 @@
 	lv2:binary <ringmodulator.so>  ;
 	rdfs:seeAlso <ringmodulator.ttl> .
 	
+<http://avwlv2.sourceforge.net/plugins/avw/percussiveenv>
+	a lv2:Plugin ;
+	lv2:binary <percussiveenv.so>  ;
+	rdfs:seeAlso <percussiveenv.ttl> .
+	
