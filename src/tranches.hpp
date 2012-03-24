@@ -9,6 +9,7 @@ using namespace LV2;
 
 class Tranches: public Plugin<Tranches>
 {
+	private:
 		double m_rate;
 
 		jack_client_t *client;bool slicingAsked;bool stopSlicingAsked;bool sliceRecorded;bool slicing;bool reverse;
@@ -20,8 +21,7 @@ class Tranches: public Plugin<Tranches>
 		jack_default_audio_sample_t *fadingTab;
 		std::vector<jack_default_audio_sample_t> sliceSamplesL;
 		std::vector<jack_default_audio_sample_t> sliceSamplesR;
-		float *triggerData;
-		bool previousTrigger;
+		float *triggerData;bool previousTrigger;
 
 		void setSliceSize(double nbBeats);
 		void clearSlice();

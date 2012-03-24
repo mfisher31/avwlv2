@@ -6,19 +6,20 @@
 
 using namespace LV2;
 
-class Slew : public Plugin<Slew>
+class Slew: public Plugin<Slew>
 {
-	//Port *port_M_in, *port_out;
-	//float timeUp, timeDown;
-	float lastData;
-	double m_rate;
+	private:
+		//Port *port_M_in, *port_out;
+		//float timeUp, timeDown;
+		float lastData;
+		double m_rate;
 
-	//public:
-	float *inData;
+		//public:
+		float *inData;
 
-public:
-	Slew(double rate);
-	void run(uint32_t nframes);
+	public:
+		Slew(double rate);
+		void run(uint32_t nframes);
 };
 
 #endif

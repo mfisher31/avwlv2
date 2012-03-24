@@ -5,16 +5,16 @@
 
 using namespace LV2;
 
-class HzToVc
-: public Plugin<HzToVc>
+class HzToVc: public Plugin<HzToVc>
 {
-    int octave;
-    double m_rate;
-    float m_eighth, m_log2inv;
-    
-  public:
-    HzToVc(double rate);
-    void run(uint32_t nframes);
+	private:
+		int octave;
+		double m_rate;
+		float m_eighth, m_log2inv;
+
+	public:
+		HzToVc(double rate);
+		void run(uint32_t nframes);
 };
-  
+
 #endif

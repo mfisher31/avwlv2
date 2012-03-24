@@ -5,13 +5,13 @@
 
 using namespace LV2;
 
-class Amp
-: public Plugin<Amp>
+class Amp: public Plugin<Amp>
 {
-	float gain;
-public:
-	Amp(double rate);
-	void run(uint32_t nframes);
+	private:
+		float gain;
+	public:
+		Amp(double rate);
+		void run(uint32_t nframes);
 };
 
 #endif

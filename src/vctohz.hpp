@@ -5,15 +5,15 @@
 
 using namespace LV2;
 
-class VcToHz
-: public Plugin<VcToHz>
+class VcToHz: public Plugin<VcToHz>
 {
-    int convMode, octave;
-    double m_rate;
+	private:
+		int convMode, octave;
+		double m_rate;
 
-  public:
-    VcToHz(double rate);
-    void run(uint32_t nframes);
+	public:
+		VcToHz(double rate);
+		void run(uint32_t nframes);
 };
-  
+
 #endif

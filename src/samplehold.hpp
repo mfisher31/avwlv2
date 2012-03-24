@@ -7,8 +7,8 @@ using namespace LV2;
 
 class SampleHold: public Plugin<SampleHold>
 {
-		float triggerLevel, sample;
-		bool gate;
+	private:
+		float triggerLevel, sample;bool gate;
 	public:
 		SampleHold(double rate);
 		void run(uint32_t nframes);

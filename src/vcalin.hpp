@@ -6,14 +6,15 @@
 
 using namespace LV2;
 
-class VcaLin : public Plugin<VcaLin>
+class VcaLin: public Plugin<VcaLin>
 {
-	float gain1, gain2, in1, in2, out;
-	//Port *port_M_gain1, *port_M_in1, *port_M_gain2, *port_M_in2, *port_out;
+	private:
+		float gain1, gain2, in1, in2, out;
+		//Port *port_M_gain1, *port_M_in1, *port_M_gain2, *port_M_in2, *port_out;
 
-public:
-	VcaLin(double rate);
-	void run(uint32_t nframes);
+	public:
+		VcaLin(double rate);
+		void run(uint32_t nframes);
 };
 
 #endif

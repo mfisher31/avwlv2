@@ -11,24 +11,21 @@
 class SynthData
 {
 
-public:
-	float *wave_sine;
-	float *wave_saw;
-	float *wave_saw2;
-	float *wave_rect;
-	float *wave_tri;
-	float *exp_data;
-	static float exp2_data[EXP2_BUF_LEN];
-	float edge;
+	public:
+		float *wave_sine;
+		float *wave_saw;
+		float *wave_saw2;
+		float *wave_rect;
+		float *wave_tri;
+		float *exp_data;
+		static float exp2_data[EXP2_BUF_LEN];
+		float edge;
 
-private:
+		SynthData(float p_edge);
+		~SynthData();
 
-public:
-	SynthData(float p_edge);
-	~SynthData();
-
-	float exp_table(float x);
-	float exp2_table(float ) FATTR_FLOAT_ARG;
+		float exp_table(float x);
+		float exp2_table(float) FATTR_FLOAT_ARG;
 };
 
 extern SynthData *synthdata;

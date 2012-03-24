@@ -124,6 +124,7 @@ def build(bld):
 	ringmodulator
 	percussiveenv
 	samplehold
+	vcpanning
     '''.split()
 
     # Build plugin libraries

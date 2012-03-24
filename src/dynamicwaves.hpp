@@ -52,7 +52,6 @@ class DynamicWaves: public Plugin<DynamicWaves>
 		float *expFMData; // Frequency modulation exp characteristic
 		float *linFMData; // Frequency modulation lin characteristic
 
-	public:
 		DynamicWaves(double rate);
 		void run(uint32_t nframes);
 };
