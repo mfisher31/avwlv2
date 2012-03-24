@@ -125,6 +125,7 @@ def build(bld):
 	percussiveenv
 	samplehold
 	vcpanning
+	mousexy
     '''.split()
 
     # Build plugin libraries
