@@ -6,7 +6,7 @@ from waflib.extras import autowaf as autowaf
 
 # Variables for 'waf dist'
 APPNAME = 'avw.lv2'
-VERSION = '0.0.6'
+VERSION = '0.0.8'
 
 # Mandatory variables
 top = '.'
@@ -123,6 +123,7 @@ def build(bld):
 	tranches
 	ringmodulator
 	percussiveenv
+	samplehold
     '''.split()
 
     # Build plugin libraries
