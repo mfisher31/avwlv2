@@ -3,7 +3,7 @@
 	* Ported from AMS:
 		- Ring Modulator
 		- Sample&Hold
-		- VC Panning
+		- VC Panning (with GUI)
 	* Percussive Env based on the AMS Env
 
 0.0.7:

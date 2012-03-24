@@ -141,6 +141,7 @@ def build(bld):
 	vco2_gui
 	ad_gui
 	vcf_gui
+	vcpanning_gui
     '''.split()
 
     # Build plugin libraries
