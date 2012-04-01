@@ -3,7 +3,7 @@
 
 #include <X11/Xlib.h>
 
-#include <lv2-c++-tools/lv2plugin.hpp>
+#include "lv2plugin.hpp"
 
 using namespace LV2;
 

@@ -2,8 +2,7 @@
 #define JACKLFO_H
 
 #include <jack/jack.h>
-
-#include <lv2-c++-tools/lv2plugin.hpp>
+#include "lv2plugin.hpp"
 
 using namespace LV2;
 

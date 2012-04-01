@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
-#include <lv2-c++-tools/lv2plugin.hpp>
 
+#include "lv2plugin.hpp"
 #include "synthdata.hpp"
 #include "absolute.hpp"
 #include "absolute.peg"

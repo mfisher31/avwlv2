@@ -1,6 +1,11 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
+#define WAVE_PERIOD             65536
+#define EXP_TABLE_LEN           32768
+#define MAX_ANALOGUE_DRIVER_OUT     6
+
+/*
 #define AMS_LONGNAME "AlsaModularSynth"
 #define AMS_SHORTNAME "AMS"
 
@@ -24,11 +29,11 @@
 #define MAX_PLAY_PORTS             32
 #define MAXPOLY                   128
 #define MAX_SO                    256
-#define WAVE_PERIOD             65536
+
 #define M_MCV_MAX_FREQ        20000.0
-#define EXP_TABLE_LEN           32768
+
 #define MAX_LADPSA_CONTROLS_PER_TAB 8
-#define MAX_ANALOGUE_DRIVER_OUT     6      
+
 
 // Appearance
 #define DEFAULT_WIDTH             750
@@ -79,6 +84,7 @@
 #define COLOR_MODULE_BG      0x6060E0
 
 #endif
+*/
 
 #endif
 

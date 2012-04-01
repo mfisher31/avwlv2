@@ -7,8 +7,7 @@
 #include <jack/types.h>
 #include <jack/transport.h>
 
-#include <lv2-c++-tools/lv2plugin.hpp>
-
+#include "lv2plugin.hpp"
 #include "synthdata.hpp"
 #include "tranches.hpp"
 #include "tranches.peg"

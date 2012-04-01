@@ -1,6 +1,6 @@
 #include <gtkmm-2.4/gtkmm.h>
-#include <lv2gui.hpp>
 
+#include "lv2gui.hpp"
 #include "vco2_gui.hpp"
 #include "vco2.peg"
 

@@ -1,6 +1,6 @@
 #include <math.h>
-#include <lv2-c++-tools/lv2plugin.hpp>
 
+#include "lv2plugin.hpp"
 #include "synthdata.hpp"
 #include "ad.hpp"
 #include "ad.peg"

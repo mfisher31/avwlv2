@@ -13,24 +13,25 @@ top = '.'
 out = 'build'
 
 def options(opt):
-    autowaf.set_options(opt)
-    opt.load('compiler_cxx')
-
+	autowaf.set_options(opt)
+	opt.load('compiler_c')
+	opt.load('compiler_cxx')
+    
+    
 def configure(conf):
     autowaf.configure(conf)
     conf.line_just = 51
     autowaf.display_header('AVW Configuration')
+    
+    conf.load('compiler_c')
     conf.load('compiler_cxx')
  
-    autowaf.check_pkg(conf, 'gtkmm-2.4',  uselib_store='gtkmm',atleast_version='2.24.0')
+    autowaf.check_pkg(conf, 'gtkmm-2.4',  uselib_store='GTKMM',atleast_version='2.24.0')
     autowaf.check_pkg(conf, 'gtk+-2.0', uselib_store='GTK2', atleast_version='2.24.0')
     autowaf.check_pkg(conf, 'cairo', uselib_store='CAIRO', atleast_version='1.0.0')
-    autowaf.check_pkg(conf, 'lv2-plugin', uselib_store='LV2-PLUGIN', atleast_version='1.0.4')
-    autowaf.check_pkg(conf, 'lv2-gui', uselib_store='LV2-GUI', atleast_version='1.0.4')	
+    autowaf.check_pkg(conf, 'lv2', uselib_store='LV2',)
     autowaf.check_pkg(conf, 'jack', uselib_store='JACK', atleast_version='0.120.0')	
-    autowaf.check_header(conf, 'c', 'lv2/lv2plug.in/ns/lv2core/lv2.h')
-    autowaf.check_header(conf, 'cxx', 'lv2-c++-tools/lv2.h')
-
+    
     conf.env.append_value('CFLAGS', '-std=c99')
 
     # Set env['pluginlib_PATTERN']
@@ -49,7 +50,7 @@ def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + ['src/synthdata.cpp']
+    obj.source       = source + ['src/synthdata.cpp', 'src/lv2plugin.cpp']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -68,7 +69,8 @@ def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + add_source
+    obj.source       = source + add_source + ['src/lv2gui.cpp']
+    obj.includes     = ['.', './src']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -76,10 +78,6 @@ def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_
     if libs != []:
 		obj.uselib = libs
     obj.install_path = '${LV2DIR}/' + bundle
-
-    # Install data file
-    #data_file = '%s.ttl' % name
-    #bld.install_files('${LV2DIR}/' + bundle, os.path.join(bundle, data_file))
 
 def build(bld):
     def do_copy(task):
@@ -135,8 +133,8 @@ def build(bld):
 				  '-fPIC', 
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="%s"' % i,
-                  '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-				  ['LV2-PLUGIN', 'JACK'])
+                  '-DPLUGIN_HEADER="src/%s.hpp src/lv2plugin.hpp"' % i],
+				  ['LV2', 'JACK'])
 				  
 	plugins_gui = '''
 	vco2_gui
@@ -153,7 +151,7 @@ def build(bld):
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="%s"' % i,
                   '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-				  ['LV2-GUI', 'GTK2', 'CAIRO'], [])
+				  ['LV2', 'GTKMM', 'GTK2', 'CAIRO'], [])
 				  
 	build_plugin_gui(bld, 'cxx', 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
                   ['-DPLUGIN_CLASS=env_gui',
@@ -161,7 +159,7 @@ def build(bld):
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="env_gui"',
                   '-DPLUGIN_HEADER="src/env_gui.hpp"'],
-				  ['LV2-GUI', 'GTK2', 'CAIRO'], ['src/env_gui_scope.cpp'])
+				  ['LV2', 'GTKMM', 'GTK2', 'CAIRO'], ['src/env_gui_scope.cpp'])
 				  
 	build_plugin_gui(bld, 'cxx', 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
                   ['-DPLUGIN_CLASS=advenv_gui',
@@ -169,5 +167,5 @@ def build(bld):
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="advenv_gui"',
                   '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
-				  ['LV2-GUI', 'GTK2', 'CAIRO'], ['src/advenv_gui_scope.cpp'])
+				  ['LV2', 'GTKMM', 'GTK2', 'CAIRO'], ['src/advenv_gui_scope.cpp'])
 				  

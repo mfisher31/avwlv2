@@ -2,8 +2,8 @@
 #define SYNTHDATA_H
 
 #include <stdlib.h>
-#include "main.hpp"
 #include "macros.hpp"
+#include "main.hpp"
 
 #define EXP2_DEPTH 15
 #define EXP2_BUF_LEN (1<<EXP2_DEPTH)

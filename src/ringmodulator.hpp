@@ -1,7 +1,7 @@
 #ifndef RINGMODULATOR_H
 #define RINGMODULATOR_H
 
-#include <lv2-c++-tools/lv2plugin.hpp>
+#include "lv2plugin.hpp"
 
 using namespace LV2;
 

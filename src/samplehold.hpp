@@ -1,7 +1,7 @@
 #ifndef SAMPLEHOLD_H
 #define SAMPLEHOLD_H
 
-#include <lv2-c++-tools/lv2plugin.hpp>
+#include "lv2plugin.hpp"
 
 using namespace LV2;
 
