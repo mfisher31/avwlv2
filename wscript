@@ -124,6 +124,7 @@ def build(bld):
 	samplehold
 	vcpanning
 	mousexy
+	vcswitch
     '''.split()
 
     # Build plugin libraries
