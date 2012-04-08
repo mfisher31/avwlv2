@@ -7,6 +7,7 @@
 		- VC Switch
 	* Percussive Env based on the AMS Env
 	* Mouse XY
+	* MoogLFP ported from LADSPA MCP Plugins
 
 0.0.7:
 	* License updated

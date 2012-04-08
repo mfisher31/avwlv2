@@ -125,6 +125,7 @@ def build(bld):
 	vcpanning
 	mousexy
 	vcswitch
+	mooglpf
     '''.split()
 
     # Build plugin libraries
