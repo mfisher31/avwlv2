@@ -123,7 +123,6 @@ def build(bld):
 	percussiveenv
 	samplehold
 	vcpanning
-	mousexy
 	vcswitch
 	mooglpf
     '''.split()

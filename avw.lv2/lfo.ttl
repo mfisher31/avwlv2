@@ -18,7 +18,7 @@
 	ll:pegName "p" ;
 	lv2:property lv2:hardRtCapable ;
 	lv2:port [
-		a cv:CVPort, lv2:InputPort ;
+		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 0 ;
 		lv2:symbol "reset" ;
 		lv2:name "Reset" ;
@@ -42,7 +42,7 @@
 		lv2:minimum 0.0 ;
 		lv2:maximum 6.28
 	] ,	[
-		a cv:CVPort, lv2:OutputPort ;
+		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 3 ;
 		lv2:symbol "sine" ;
 		lv2:name "Sine" ;
@@ -50,7 +50,7 @@
 		lv2:minimum -1.0 ;
         lv2:maximum 1.0
 	] ,	[
-		a cv:CVPort, lv2:OutputPort ;
+		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 4 ;
 		lv2:symbol "triangle" ;
 		lv2:name "Triangle" ;
@@ -58,7 +58,7 @@
 		lv2:minimum -1.0 ;
         lv2:maximum 1.0
 	],	[
-		a cv:CVPort, lv2:OutputPort ;
+		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 5 ;
 		lv2:symbol "sawUp" ;
 		lv2:name "Saw Up" ;
@@ -66,7 +66,7 @@
 		lv2:minimum -1.0 ;
         lv2:maximum 1.0
 	],	[
-		a cv:CVPort, lv2:OutputPort ;
+		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 6 ;
 		lv2:symbol "sawDown" ;
 		lv2:name "Saw Down" ;
@@ -74,7 +74,7 @@
 		lv2:minimum -1.0 ;
         lv2:maximum 1.0 
 	],	[
-		a cv:CVPort, lv2:OutputPort ;
+		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 7 ;
 		lv2:symbol "rectangle" ;
 		lv2:name "Rectangle" ;
@@ -82,7 +82,7 @@
 		lv2:minimum -1.0 ;
         lv2:maximum 1.0
 	],	[
-		a cv:CVPort, lv2:OutputPort ;
+		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 8 ;
 		lv2:symbol "sampleAndHold" ;
 		lv2:name "S & H" ;
