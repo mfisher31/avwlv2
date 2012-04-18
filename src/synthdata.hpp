@@ -23,7 +23,6 @@ class SynthData
 		float edge;
 
 		SynthData(float p_edge);
-		~SynthData();
 
 		float exp_table(float x);
 		float exp2_table(float);

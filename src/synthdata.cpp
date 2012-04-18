@@ -96,10 +96,6 @@ SynthData::SynthData(float edge) :
 		wave_tri[l1] = -1.0 + (float) (l1 - (WAVE_PERIOD >> 1) - (WAVE_PERIOD >> 2)) * dy;
 }
 
-SynthData::~SynthData()
-{
-}
-
 float SynthData::exp_table(float x)
 {
 	int index;
