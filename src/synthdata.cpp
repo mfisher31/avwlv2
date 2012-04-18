@@ -17,7 +17,6 @@ union uf
 		float f;
 		unsigned u;
 };
-float SynthData::exp2_data[EXP2_BUF_LEN];
 
 SynthData::SynthData(float edge) :
 		edge(edge)
@@ -27,13 +26,6 @@ SynthData::SynthData(float edge) :
 	int decaytime;
 
 	decaytime = (int) ((float) WAVE_PERIOD / 16.0);
-
-	exp_data = (float *) malloc(EXP_TABLE_LEN * sizeof(float));
-	wave_sine = (float *) malloc(WAVE_PERIOD * sizeof(float));
-	wave_saw = (float *) malloc(WAVE_PERIOD * sizeof(float));
-	wave_saw2 = (float *) malloc(WAVE_PERIOD * sizeof(float));
-	wave_rect = (float *) malloc(WAVE_PERIOD * sizeof(float));
-	wave_tri = (float *) malloc(WAVE_PERIOD * sizeof(float));
 
 	dphi = 2.0 * M_PI / WAVE_PERIOD;
 	phi = 0;
@@ -106,17 +98,10 @@ SynthData::SynthData(float edge) :
 
 SynthData::~SynthData()
 {
-	free(exp_data);
-	free(wave_sine);
-	free(wave_saw);
-	free(wave_saw2);
-	free(wave_rect);
-	free(wave_tri);
 }
 
 float SynthData::exp_table(float x)
 {
-
 	int index;
 
 	index = (int) ((x + 16.0) * 1000.0);

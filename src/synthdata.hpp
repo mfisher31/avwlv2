@@ -2,22 +2,23 @@
 #define SYNTHDATA_H
 
 #include <stdlib.h>
-#include "macros.hpp"
-#include "main.hpp"
 
 #define EXP2_DEPTH 15
 #define EXP2_BUF_LEN (1<<EXP2_DEPTH)
 
+#define WAVE_PERIOD             65536
+#define EXP_TABLE_LEN           32768
+#define MAX_ANALOGUE_DRIVER_OUT     6
+
 class SynthData
 {
-
 	public:
-		float *wave_sine;
-		float *wave_saw;
-		float *wave_saw2;
-		float *wave_rect;
-		float *wave_tri;
-		float *exp_data;
+		float wave_sine[WAVE_PERIOD];
+		float wave_saw[WAVE_PERIOD];
+		float wave_saw2[WAVE_PERIOD];
+		float wave_rect[WAVE_PERIOD];
+		float wave_tri[WAVE_PERIOD];
+		float exp_data[EXP_TABLE_LEN];
 		static float exp2_data[EXP2_BUF_LEN];
 		float edge;
 
@@ -25,10 +26,10 @@ class SynthData
 		~SynthData();
 
 		float exp_table(float x);
-		float exp2_table(float) FATTR_FLOAT_ARG;
+		float exp2_table(float);
 };
 
-extern SynthData *synthdata;
+//extern SynthData *synthdata;
 
 #endif
 
