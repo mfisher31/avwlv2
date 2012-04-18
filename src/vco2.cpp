@@ -34,51 +34,6 @@ Vco2::Vco2(double rate) :
 	waveForm = SINUS;
 
 	m_rate = rate;
-
-	/*
-	 cv.in_index = 1;
-	 cv.in_off -= cv.step;
-	 port_M_freq = new Port(tr("Freq"), PORT_IN, 1, this);
-	 port_M_exp = new Port(tr("Exp. FM"), PORT_IN, 2, this);
-	 port_M_lin = new Port(tr("Lin. FM"), PORT_IN, 3, this);
-	 port_M_pw = new Port(tr("PW"), PORT_IN, 4, this);
-
-	 cv.out_off = 115;
-	 port_sine = new Port(tr("Out"), PORT_OUT, 0, this);
-
-	 port_tri = new Port("Triangle", PORT_OUT, 1, this, synthdata);
-	 port_saw = new Port("Saw", PORT_OUT, 2, this, synthdata);
-	 port_rect = new Port("Rectangle", PORT_OUT, 3, this, synthdata);
-	 port_aux = new Port("Aux", PORT_OUT, 4, this, synthdata);
-
-	 configDialog->initTabWidget();
-	 QVBoxLayout *freqTab = configDialog->addVBoxTab(tr("Frequency"));
-	 QStringList waveFormNames;
-	 waveFormNames << tr("Sine");
-	 waveFormNames << tr("Triangle");
-	 waveFormNames << tr("Sawtooth");
-	 waveFormNames << tr("Rectangle");
-	 waveFormNames << tr("Aux Saw");
-	 waveFormNames << tr("Aux Saw 1");
-	 waveFormNames << tr("Aux Saw 2");
-	 configDialog->addComboBox(tr("Wave Form"), waveForm, waveFormNames, freqTab);
-	 configDialog->addIntSlider(tr("Octave"), octave, 0, 6, freqTab);
-	 configDialog->addSlider(tr("Tune"), freq, 0, 1, false, freqTab);
-	 configDialog->addIntSlider(tr("Harmonic"), harmonic, 1, 16, freqTab);
-	 configDialog->addIntSlider(tr("Subharmonic"), subharmonic, 1, 16, freqTab);
-
-	 QVBoxLayout *pulseTab = configDialog->addVBoxTab(tr("Pulse Width / Phase"));
-	 configDialog->addSlider(tr("PW"), pw0, 0.1, 0.9, false, pulseTab);
-	 configDialog->addSlider(tr("PW Gain"), pwGain, 0, 1, false, pulseTab);
-	 configDialog->addSlider(tr("Phi0"), phi0, 0, 6.283, false, pulseTab);
-
-	 QVBoxLayout *modulationTab = configDialog->addVBoxTab(
-	 tr("Modulation / Aux Waveform"));
-	 configDialog->addSlider(tr("Exp. FM Gain"), vcoExpFMGain, 0, 10,
-	 false, modulationTab);
-	 configDialog->addSlider(tr("Lin. FM Gain"), vcoLinFMGain, 0, 10,
-	 false, modulationTab);
-	 */
 }
 
 void Vco2::run(uint32_t nframes)
@@ -101,10 +56,10 @@ void Vco2::run(uint32_t nframes)
 
 	edge = 0.01f + 1.8f * synthdata->edge;
 
-	freqData = p(p_freq); //port_M_freq->getinputdata();
-	expFMData = p(p_expFM); //port_M_exp->getinputdata();
-	linFMData = p(p_linFM); //port_M_lin->getinputdata();
-	pwData = p(p_pwPort); //port_M_pw->getinputdata();
+	//freqData = p(p_freq); //port_M_freq->getinputdata();
+	//expFMData = p(p_expFM); //port_M_exp->getinputdata();
+	//linFMData = p(p_linFM); //port_M_lin->getinputdata();
+	//pwData = p(p_pwPort); //port_M_pw->getinputdata();
 
 	freq_const = wave_period / (float) m_rate * (float) harmonic / (float) subharmonic;
 	freq_tune = 4.0313842f + octave + freq;
@@ -117,7 +72,7 @@ void Vco2::run(uint32_t nframes)
 	{
 		for (l2 = 0; l2 < nframes; ++l2)
 		{
-			dphi = freq_const * (synthdata->exp2_table(freq_tune + freqData[l2] + vcoExpFMGain * expFMData[l2]) + gain_linfm * linFMData[l2]);
+			dphi = freq_const * (synthdata->exp2_table(freq_tune + p(p_freq)[l2] + vcoExpFMGain * p(p_expFM)[l2]) + gain_linfm * p(p_linFM)[l2]);
 			if (dphi > wave_period_2)
 				dphi = wave_period_2;
 			phi1 = phi + phi_const;
@@ -149,7 +104,7 @@ void Vco2::run(uint32_t nframes)
 
 				case SAWTOOTH:
 				{
-					pw = (pw0 + pwGain * pwData[l2]) * wave_period;
+					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
@@ -190,7 +145,7 @@ void Vco2::run(uint32_t nframes)
 					break;
 				case RECTANGLE:
 				{
-					pw = (pw0 + pwGain * pwData[l2]) * wave_period;
+					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
@@ -240,7 +195,7 @@ void Vco2::run(uint32_t nframes)
 	{
 		for (l2 = 0; l2 < nframes; ++l2)
 		{
-			dphi = freq_const * (synthdata->exp2_table(freq_tune + freqData[l2] + vcoExpFMGain * expFMData[l2]) + gain_linfm * linFMData[l2]);
+			dphi = freq_const * (synthdata->exp2_table(freq_tune + p(p_freq)[l2] + vcoExpFMGain * p(p_expFM)[l2]) + gain_linfm * p(p_linFM)[l2]);
 			if (dphi > wave_period_2)
 				dphi = wave_period_2;
 			phint = (int) phi;
@@ -266,7 +221,7 @@ void Vco2::run(uint32_t nframes)
 
 				case SAWTOOTH:
 				{
-					pw = (pw0 + pwGain * pwData[l2]) * wave_period;
+					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
@@ -307,7 +262,7 @@ void Vco2::run(uint32_t nframes)
 					break;
 				case RECTANGLE:
 				{
-					pw = (pw0 + pwGain * pwData[l2]) * wave_period;
+					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
