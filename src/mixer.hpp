@@ -1,7 +1,7 @@
 #ifndef MIXER_H
 #define MIXER_H
 
-#include "lv2plugin/lv2plugin.hpp"
+#include "lv2plugin.hpp"
 
 using namespace LV2;
 

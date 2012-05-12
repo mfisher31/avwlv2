@@ -4,14 +4,14 @@
 #include <math.h>
 #include <iostream>
 
-#include "lv2plugin/lv2plugin.hpp"
+#include "lv2plugin.hpp"
 
 #include "test.hpp"
 
 Test::Test(double rate) :
-		Plugin<Test>(p_n_ports)
+		Plugin<Test>(11)
 {
-	 std::cout << "Constructor" << std::endl;
+	std::cout << "Constructor" << std::endl;
 }
 
 void Test::run(uint32_t nframes)
@@ -22,11 +22,6 @@ void Test::run(uint32_t nframes)
 	{
 		p(p_out)[l2] = 0;
 	}
-}
-
-void Test::deactivate()
-{
-	 std::cout << "Destructor" << std::endl;
 }
 
 static int _ = Test::register_class("http://avwlv2.sourceforge.net/plugins/avw/test");

@@ -3,7 +3,7 @@
 
 #define MAX_DELAY_FRAMES                16384
 
-#include "lv2plugin/lv2plugin.hpp"
+#include "lv2plugin.hpp"
 
 static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/delay";
 

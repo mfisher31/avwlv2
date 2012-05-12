@@ -50,7 +50,7 @@ def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + ['src/synthdata.cpp', 'src/lv2plugin/lv2plugin.cpp']
+    obj.source       = source + ['src/synthdata.cpp', 'src/lv2plugin.cpp']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -69,7 +69,7 @@ def build_plugin_withoutsynthdata(bld, lang, bundle, name, source, cxxflags=[], 
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + ['src/lv2plugin/lv2plugin.cpp']
+    obj.source       = source + ['src/lv2plugin.cpp']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -89,7 +89,7 @@ def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + add_source + ['src/lv2gui/lv2gui.cpp']
+    obj.source       = source + add_source + ['src/lv2gui.cpp']
     obj.includes     = ['.', './src']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)

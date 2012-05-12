@@ -1,7 +1,7 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include "lv2plugin/lv2plugin.hpp"
+#include "lv2plugin.hpp"
 
 using namespace LV2;
 
@@ -39,7 +39,6 @@ class Test: public Plugin<Test>
 	public:
 		Test(double rate);
 		void run(uint32_t nframes);
-		void deactivate();
 };
 
 #endif
