@@ -12,6 +12,7 @@ VERSION = '0.0.8'
 top = '.'
 out = 'build'
 
+
 def options(opt):
 	autowaf.set_options(opt)
 	opt.load('compiler_c')
@@ -44,6 +45,7 @@ def configure(conf):
     autowaf.display_msg(conf, "LV2 bundle directory", conf.env['LV2DIR'])
     print('')
 
+
 def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     penv = bld.env.derive()
     penv['cshlib_PATTERN']   = bld.env['pluginlib_PATTERN']
@@ -51,25 +53,6 @@ def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
     obj.source       = source + ['src/synthdata.cpp', 'src/lv2plugin.cpp']
-    obj.name         = name
-    obj.target       = os.path.join(bundle, name)
-    if cxxflags != []:
-        obj.cxxflags = cxxflags
-    if libs != []:
-		obj.uselib = libs
-    obj.install_path = '${LV2DIR}/' + bundle
-
-    # Install data file
-    data_file = '%s.ttl' % name
-    bld.install_files('${LV2DIR}/' + bundle, os.path.join(bundle, data_file))
-
-def build_plugin_withoutsynthdata(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
-    penv = bld.env.derive()
-    penv['cshlib_PATTERN']   = bld.env['pluginlib_PATTERN']
-    penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
-    obj              = bld(features = '%s %sshlib' % (lang,lang))
-    obj.env          = penv
-    obj.source       = source + ['src/lv2plugin.cpp']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -98,6 +81,7 @@ def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_
     if libs != []:
 		obj.uselib = libs
     obj.install_path = '${LV2DIR}/' + bundle
+
 
 def build(bld):
 	def do_copy(task):
@@ -187,11 +171,3 @@ def build(bld):
                   '-DPLUGIN_URI_SUFFIX="advenv_gui"',
                   '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
 				  ['LV2', 'GTKMM', 'GTK2', 'CAIRO'], ['src/advenv_gui_scope.cpp'])
-	
-	build_plugin_withoutsynthdata(bld, 'cxx', 'avw.lv2', 'test', ['src/test.cpp'],
-        ['-DPLUGIN_CLASS=test',
-		 '-fPIC', 
-         '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
-         '-DPLUGIN_URI_SUFFIX="test"',
-         '-DPLUGIN_HEADER="src/test.hpp src/lv2plugin.hpp"'],
-		 ['LV2', 'JACK'])
