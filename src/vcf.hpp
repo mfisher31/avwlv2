@@ -2,9 +2,45 @@
 #define VCF_H
 
 #include "synthdata.hpp"
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 
 using namespace LV2;
+
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/vcf";
+
+enum p_port_enum {
+  p_in,
+  p_freqPort,
+  p_expFM,
+  p_linFM,
+  p_resonancePort,
+  p_vcfType,
+  p_inputGain,
+  p_freq,
+  p_expFMGain,
+  p_linFMGain,
+  p_resonance,
+  p_resonanceGain,
+  p_out,
+  p_n_ports
+};
+
+static const peg_data_t p_ports[] = {
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+  { 0, 7, 0, 0, 0, 0 },
+  { 0, 10, 1, 0, 0, 0 },
+  { 0, 10, 5, 0, 0, 0 },
+  { 0, 10, 0, 0, 0, 0 },
+  { 0, 10, 0, 0, 0, 0 },
+  { 0.8, 1, 0.01, 0, 0, 0 },
+  { 0, 1, 0, 0, 0, 0 },
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+};
+
 
 #define MIN_FREQ                         20
 #define MAX_FREQ                      20000

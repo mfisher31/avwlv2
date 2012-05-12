@@ -3,11 +3,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
 
 #include "vco2.hpp"
-#include "vco2.peg"
 
 Vco2::Vco2(double rate) :
 	Plugin<Vco2> (p_n_ports)

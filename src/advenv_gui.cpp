@@ -1,11 +1,11 @@
 #include <gtkmm-2.4/gtkmm.h>
 #include <gdkmm-2.4/gdkmm.h>
 
-#include "lv2gui.hpp"
+#include "lv2plugin/lv2plugin.hpp"
+#include "lv2gui/lv2gui.hpp"
 #include "advenv_gui.hpp"
-#include "advenv.peg"
-
 #include "advenv_gui_scope.hpp"
+#include "advenv.hpp"
 
 AdvEnvGUI::AdvEnvGUI(const std::string& URI)
 {

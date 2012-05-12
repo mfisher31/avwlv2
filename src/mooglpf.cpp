@@ -3,9 +3,8 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "mooglpf.hpp"
-#include "mooglpf.peg"
 
 using namespace LV2;
 

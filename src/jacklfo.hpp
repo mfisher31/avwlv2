@@ -2,9 +2,28 @@
 #define JACKLFO_H
 
 #include <jack/jack.h>
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 
 using namespace LV2;
+
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/jacklfo";
+
+enum p_port_enum
+{
+	p_reset, p_frequency, p_phi0, p_sine, p_triangle, p_sawUp, p_sawDown, p_rectangle, p_sampleAndHold, p_n_ports
+};
+
+static const peg_data_t p_ports[] =
+{
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+{ 0, 100, 5, 0, 0, 0 },
+{ 0, 6.28, 0, 0, 0, 0 },
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
+{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, };
 
 class JackLfo: public Plugin<JackLfo>
 {
@@ -16,7 +35,8 @@ class JackLfo: public Plugin<JackLfo>
 		double r, old_r;
 		double sh, old_sh;
 		int state;
-		double dt, wave_period;bool trigger;
+		double dt, wave_period;
+		bool trigger;
 		//Port *port_M_trigger, *port_sine, *port_tri, *port_sawup, *port_sawdown, *port_rect, *port_sh;
 
 		double m_rate;

@@ -1,8 +1,9 @@
 #include <gtkmm-2.4/gtkmm.h>
 
-#include "lv2gui.hpp"
+#include "lv2plugin/lv2plugin.hpp"
+#include "lv2gui/lv2gui.hpp"
 #include "vcpanning_gui.hpp"
-#include "vcpanning.peg"
+#include "vcpanning.hpp"
 
 VcPanningGUI::VcPanningGUI(const std::string& URI)
 {

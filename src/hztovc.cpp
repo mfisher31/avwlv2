@@ -5,7 +5,6 @@
 
 #include "synthdata.hpp"
 #include "hztovc.hpp"
-#include "hztovc.peg"
 
 using namespace LV2;
 

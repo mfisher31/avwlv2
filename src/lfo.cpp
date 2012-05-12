@@ -6,7 +6,6 @@
 
 #include "synthdata.hpp"
 #include "lfo.hpp"
-#include "lfo.peg"
 
 using namespace LV2;
 

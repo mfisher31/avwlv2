@@ -4,10 +4,9 @@
 #include <math.h>
 #include <time.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
 #include "noise2.hpp"
-#include "noise2.peg"
 
 Noise2::Noise2(double rate)
 : Plugin<Noise2>(p_n_ports)

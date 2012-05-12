@@ -3,11 +3,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
 
 #include "dynamicwaves.hpp"
-#include "dynamicwaves.peg"
 
 DynamicWaves::DynamicWaves(double rate) :
 	Plugin<DynamicWaves> (p_n_ports)

@@ -50,7 +50,7 @@ def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + ['src/synthdata.cpp', 'src/lv2plugin.cpp']
+    obj.source       = source + ['src/synthdata.cpp', 'src/lv2plugin/lv2plugin.cpp']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
@@ -63,13 +63,33 @@ def build_plugin(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
     data_file = '%s.ttl' % name
     bld.install_files('${LV2DIR}/' + bundle, os.path.join(bundle, data_file))
 
+def build_plugin_withoutsynthdata(bld, lang, bundle, name, source, cxxflags=[], libs=[]):
+    penv = bld.env.derive()
+    penv['cshlib_PATTERN']   = bld.env['pluginlib_PATTERN']
+    penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
+    obj              = bld(features = '%s %sshlib' % (lang,lang))
+    obj.env          = penv
+    obj.source       = source + ['src/lv2plugin/lv2plugin.cpp']
+    obj.name         = name
+    obj.target       = os.path.join(bundle, name)
+    if cxxflags != []:
+        obj.cxxflags = cxxflags
+    if libs != []:
+		obj.uselib = libs
+    obj.install_path = '${LV2DIR}/' + bundle
+
+    # Install data file
+    data_file = '%s.ttl' % name
+    bld.install_files('${LV2DIR}/' + bundle, os.path.join(bundle, data_file))
+
+
 def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_source=[]):
     penv = bld.env.derive()
     penv['cshlib_PATTERN']   = bld.env['pluginlib_PATTERN']
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = '%s %sshlib' % (lang,lang))
     obj.env          = penv
-    obj.source       = source + add_source + ['src/lv2gui.cpp']
+    obj.source       = source + add_source + ['src/lv2gui/lv2gui.cpp']
     obj.includes     = ['.', './src']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
@@ -80,24 +100,24 @@ def build_plugin_gui(bld, lang, bundle, name, source, cxxflags=[], libs=[], add_
     obj.install_path = '${LV2DIR}/' + bundle
 
 def build(bld):
-    def do_copy(task):
-        src = task.inputs[0].abspath()
-        tgt = task.outputs[0].abspath()
-        return shutil.copy(src, tgt)
-
-    for i in bld.path.ant_glob('avw.lv2/*.ttl'):
-        bld(rule   = do_copy,
-            source = i,
-            target = bld.path.get_bld().make_node('avw.lv2/%s' % i),
-            install_path = '${LV2DIR}/avw.lv2')
-            
-    for i in bld.path.ant_glob('gui/*.xml'):
-        bld(rule   = do_copy,
+	def do_copy(task):
+		src = task.inputs[0].abspath()
+		tgt = task.outputs[0].abspath()
+		return shutil.copy(src, tgt)
+    
+	for i in bld.path.ant_glob('avw.lv2/*.ttl'):
+		bld(rule   = do_copy,
             source = i,
             target = bld.path.get_bld().make_node('avw.lv2/%s' % i),
             install_path = '${LV2DIR}/avw.lv2')
 
-    plugins = '''
+	for i in bld.path.ant_glob('gui/*.xml'):
+		bld(rule   = do_copy,
+            source = i,
+            target = bld.path.get_bld().make_node('avw.lv2/%s' % i),
+            install_path = '${LV2DIR}/avw.lv2')
+
+ 	plugins = '''
 	vco2
 	ad
 	advenv
@@ -125,18 +145,17 @@ def build(bld):
 	vcpanning
 	vcswitch
 	mooglpf
-    '''.split()
+	'''.split()
 
-    # Build plugin libraries
-    for i in plugins:
-        build_plugin(bld, 'cxx', 'avw.lv2', i, ['src/%s.cpp' % i],
+	for i in plugins:
+		build_plugin(bld, 'cxx', 'avw.lv2', i, ['src/%s.cpp' % i],
                   ['-DPLUGIN_CLASS=%s' % i,
 				  '-fPIC', 
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
                   '-DPLUGIN_URI_SUFFIX="%s"' % i,
                   '-DPLUGIN_HEADER="src/%s.hpp src/lv2plugin.hpp"' % i],
 				  ['LV2', 'JACK'])
-				  
+			  
 	plugins_gui = '''
 	vco2_gui
 	ad_gui
@@ -144,9 +163,8 @@ def build(bld):
 	vcpanning_gui
     '''.split()
 
-    # Build plugin libraries
-    for i in plugins_gui:
-        build_plugin_gui(bld, 'cxx', 'avw.lv2', i, ['src/%s.cpp' % i],
+	for i in plugins_gui:
+		build_plugin_gui(bld, 'cxx', 'avw.lv2', i, ['src/%s.cpp' % i],
                   ['-DPLUGIN_CLASS=%s' % i,
 				  '-fPIC', 
                   '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
@@ -169,4 +187,11 @@ def build(bld):
                   '-DPLUGIN_URI_SUFFIX="advenv_gui"',
                   '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
 				  ['LV2', 'GTKMM', 'GTK2', 'CAIRO'], ['src/advenv_gui_scope.cpp'])
-				  
+	
+	build_plugin_withoutsynthdata(bld, 'cxx', 'avw.lv2', 'test', ['src/test.cpp'],
+        ['-DPLUGIN_CLASS=test',
+		 '-fPIC', 
+         '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+         '-DPLUGIN_URI_SUFFIX="test"',
+         '-DPLUGIN_HEADER="src/test.hpp src/lv2plugin.hpp"'],
+		 ['LV2', 'JACK'])

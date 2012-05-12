@@ -3,15 +3,13 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 
 using namespace LV2;
 
 #include "synthdata.hpp"
 
 #include "vcf.hpp"
-#include "vcf.peg"
-
 
 Vcf::Vcf(double rate):
 Plugin<Vcf>(p_n_ports)

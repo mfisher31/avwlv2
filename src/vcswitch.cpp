@@ -3,10 +3,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
+
 #include "vcswitch.hpp"
-#include "vcswitch.peg"
 
 using namespace LV2;
 

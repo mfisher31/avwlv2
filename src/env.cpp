@@ -3,11 +3,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
 
 #include "env.hpp"
-#include "env.peg"
 
 Env::Env(double rate):
 Plugin<Env>(p_n_ports)

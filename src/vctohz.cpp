@@ -5,7 +5,6 @@
 
 #include "synthdata.hpp"
 #include "vctohz.hpp"
-#include "vctohz.peg"
 
 using namespace LV2;
 

@@ -10,7 +10,6 @@
 
 #include "synthdata.hpp"
 #include "jacklfo.hpp"
-#include "jacklfo.peg"
 
 using namespace LV2;
 

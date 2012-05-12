@@ -6,7 +6,6 @@
 
 #include "synthdata.hpp"
 #include "mixer.hpp"
-#include "mixer.peg"
 
 using namespace LV2;
 

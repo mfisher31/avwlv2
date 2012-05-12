@@ -3,11 +3,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
 
 #include "slew.hpp"
-#include "slew.peg"
 
 Slew::Slew(double rate):
 Plugin<Slew>(p_n_ports)

@@ -3,11 +3,10 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include "lv2plugin/lv2plugin.hpp"
 #include "synthdata.hpp"
 
 #include "vcalin.hpp"
-#include "vcalin.peg"
 
 VcaLin::VcaLin(double rate):
 Plugin<VcaLin>(p_n_ports)
