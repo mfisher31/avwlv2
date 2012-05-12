@@ -32,7 +32,7 @@
 
 #include <lv2/lv2plug.in/ns/lv2core/lv2.h>
 #include <lv2/lv2plug.in/ns/ext/uri-map/uri-map.h>
-#include "lv2types.hpp"
+//#include "lv2types.hpp"
 
 /** @mainpage liblv2-plugin and liblv2-gui - API documentation
  These documents describes some C++ classes that may be of use if you want
@@ -77,6 +77,8 @@ typedef struct
 
 namespace LV2
 {
+	typedef LV2_Feature Feature;
+
 	/** @internal
 	 A thin wrapper around std::vector<LV2_Descriptor> that frees the URI
 	 members of the descriptors. */
@@ -104,20 +106,6 @@ namespace LV2
 	 come in handy when using @ref pluginmixins "mixins" and it doesn't add
 	 any additional vtable lookup and function call costs, like real dynamic
 	 binding would.
-	 @code
-	 #include <cstring>
-	 #include <lv2plugin.hpp>
-
-	 class TestLV2 : public LV2::Plugin<TestLV2> {
-	 public:
-	 TestLV2(double) : LV2::Plugin<TestLV2>(2) { }
-	 void run(uint32_t sample_count) {
-	 std::memcpy(p(1), p(0), sample_count * sizeof(float));
-	 }
-	 };
-
-	 static unsigned _ = TestLV2::register_class("http://ll-plugins.sf.net/plugins/TestLV2");
-	 @endcode
 
 	 If the above code is compiled and linked with @c -llv2_plugin into a
 	 shared module, it could form the shared object part of a fully
@@ -131,8 +119,8 @@ namespace LV2
 	 If you want to write a synth plugin you should probably inherit the
 	 Synth class instead of this one.
 	 */
-	template<class Derived, class Ext1 = End, class Ext2 = End, class Ext3 = End, class Ext4 = End, class Ext5 = End, class Ext6 = End, class Ext7 = End, class Ext8 = End, class Ext9 = End>
-	class Plugin: public MixinTree<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>
+	template<class Derived>
+	class Plugin
 	{
 		public:
 
@@ -145,22 +133,8 @@ namespace LV2
 			Plugin(uint32_t ports) :
 					m_ports(ports, 0), m_ok(true)
 			{
-				m_features = s_features;
 				m_bundle_path = s_bundle_path;
-				s_features = 0;
 				s_bundle_path = 0;
-				if (m_features)
-				{
-					FeatureHandlerMap hmap;
-					Derived::map_feature_handlers(hmap);
-					for (const Feature* const * iter = m_features; *iter != 0; ++iter)
-					{
-						FeatureHandlerMap::iterator miter;
-						miter = hmap.find((*iter)->URI);
-						if (miter != hmap.end())
-							miter->second(static_cast<Derived*>(this), (*iter)->data);
-					}
-				}
 			}
 
 			/** Connects the ports. You shouldn't have to override this, just use
@@ -231,7 +205,6 @@ namespace LV2
 				desc.run = &Derived::_run;
 				desc.deactivate = &Derived::_deactivate;
 				desc.cleanup = &Derived::_delete_plugin_instance;
-				desc.extension_data = &Derived::extension_data;
 				get_lv2_descriptors().push_back(desc);
 				return get_lv2_descriptors().size() - 1;
 			}
@@ -246,7 +219,7 @@ namespace LV2
 			 */
 			bool check_ok()
 			{
-				return m_ok && MixinTree<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::check_ok();
+				return m_ok; // && MixinTree<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::check_ok();
 			}
 
 		protected:
@@ -344,7 +317,6 @@ namespace LV2
 
 				// copy some data to static variables so the subclasses don't have to
 				// bother with it
-				s_features = features;
 				s_bundle_path = bundle_path;
 
 				Derived* t = new Derived(sample_rate);
@@ -364,24 +336,11 @@ namespace LV2
 			}
 
 		private:
-
-			/** @internal
-			 The Feature array passed to this plugin instance. May not be valid
-			 after the constructor has returned.
-			 */
-			LV2::Feature const* const * m_features;
-
 			/** @internal
 			 The bundle path passed to this plugin instance. May not be valid
 			 after the constructor has returned.
 			 */
 			char const* m_bundle_path;
-
-			/** @internal
-			 Used to pass the Feature array to the plugin without having to pass
-			 it through the constructor of the plugin class.
-			 */
-			static LV2::Feature const* const * s_features;
 
 			/** @internal
 			 Used to pass the bundle path to the plugin without having to pass
@@ -398,12 +357,8 @@ namespace LV2
 
 	};
 
-	// The static variables need to be initialised.
-	template<class Derived, class Ext1, class Ext2, class Ext3, class Ext4, class Ext5, class Ext6, class Ext7, class Ext8, class Ext9>
-	LV2::Feature const* const * Plugin<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::s_features = 0;
-
-	template<class Derived, class Ext1, class Ext2, class Ext3, class Ext4, class Ext5, class Ext6, class Ext7, class Ext8, class Ext9>
-	char const* Plugin<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::s_bundle_path = 0;
+	template<class Derived>
+	char const* Plugin<Derived>::s_bundle_path = 0;
 }
 
 #endif

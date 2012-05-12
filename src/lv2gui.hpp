@@ -35,7 +35,7 @@
 
 #include <lv2/lv2plug.in/ns/extensions/ui/ui.h>
 #include <lv2/lv2plug.in/ns/ext/uri-map/uri-map.h>
-#include "lv2types.hpp"
+#include "lv2plugin.hpp"
 
 namespace LV2
 {
@@ -58,41 +58,12 @@ namespace LV2
 	 For example, if you wanted a GUI that wrote a MIDI Note On event to port
 	 3 in the plugin whenever the user clicked a button, you could do it like
 	 this:
-
-	 @code
-	 #include <lv2gui.hpp>
-	 #include <gtkmm.h>
-
-	 class MyGUI : public LV2::GUI<MyGUI, LV2::URIMap<true>, LV2::WriteMIDI<true> > {
-	 public:
-	 MyGUI(const char* plugin_uri)
-	 : m_button("Click me!") {
-	 pack_start(m_button);
-	 m_button.signal_clicked().connect(sigc::mem_fun(*this, &MyGUI::send_event));
-	 }
-	 protected:
-	 void send_event() {
-	 uint8_t noteon[] = { 0x90, 0x50, 0x40 };
-	 write_midi(3, 3, noteon);
-	 }
-	 Gtk::Button m_button;
-	 };
-	 @endcode
-
-	 The function @c write_midi() is implemented in LV2::WriteMIDI and thus
-	 available in @c MyGUI. LV2::WriteMIDI requires that LV2::URIMap is also
-	 used (because of the way event types work in LV2) - if you don't add
-	 LV2::URIMap as well you will get a compilation error.
 	 */
 
 	/** This is the base class for a plugin GUI. You should inherit it and
 	 override any public member functions you want to provide
 	 implementations for. All subclasses must have a constructor with
 	 the signature
-
-	 @code
-	 MyGUI(char const* plugin_uri);
-	 @endcode
 
 	 where @c plugin_uri is the URI of the plugin that this GUI will
 	 control (not the URI for the GUI itself).
@@ -101,8 +72,8 @@ namespace LV2
 	 GUI extensions, by passing @ref guimixins "GUI mixin classes" as template
 	 parameters to GUI (second template parameter and onwards).
 	 */
-	template<class Derived, class Ext1 = End, class Ext2 = End, class Ext3 = End, class Ext4 = End, class Ext5 = End, class Ext6 = End, class Ext7 = End, class Ext8 = End, class Ext9 = End>
-	class GUI: public Gtk::HBox, public MixinTree<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>
+	template<class Derived>
+	class GUI: public Gtk::HBox
 	{
 		public:
 
@@ -113,24 +84,10 @@ namespace LV2
 			{
 				m_ctrl = s_ctrl;
 				m_wfunc = s_wfunc;
-				m_features = s_features;
 				m_bundle_path = s_bundle_path;
 				s_ctrl = 0;
 				s_wfunc = 0;
-				s_features = 0;
 				s_bundle_path = 0;
-				if (m_features)
-				{
-					FeatureHandlerMap hmap;
-					Derived::map_feature_handlers(hmap);
-					for (const Feature* const * iter = m_features; *iter != 0; ++iter)
-					{
-						FeatureHandlerMap::iterator miter;
-						miter = hmap.find((*iter)->URI);
-						if (miter != hmap.end())
-							miter->second(static_cast<Derived*>(this), (*iter)->data);
-					}
-				}
 			}
 
 			/** Override this if you want your GUI to do something when a control port
@@ -148,9 +105,13 @@ namespace LV2
 				desc->instantiate = &Derived::create_ui_instance;
 				desc->cleanup = &Derived::delete_ui_instance;
 				desc->port_event = &Derived::_port_event;
-				desc->extension_data = &Derived::extension_data;
 				get_lv2g2g_descriptors().push_back(desc);
 				return get_lv2g2g_descriptors().size() - 1;
+			}
+
+			bool check_ok() const
+			{
+				return true;
 			}
 
 		protected:
@@ -168,13 +129,6 @@ namespace LV2
 			inline void write_control(uint32_t port, float value)
 			{
 				write(port, sizeof(float), 0, &value);
-			}
-
-			/** Get the feature array that was passed by the host. This may only
-			 be valid while the constructor is running. */
-			inline LV2::Feature const* const * features()
-			{
-				return m_features;
 			}
 
 			/** Get the filesystem path to the bundle that contains this GUI. */
@@ -200,13 +154,12 @@ namespace LV2
 			 it directly. */
 			static LV2UI_Handle create_ui_instance(struct _LV2UI_Descriptor const* descriptor, char const* plugin_uri, char const* bundle_path, LV2UI_Write_Function write_func, LV2UI_Controller ctrl, LV2UI_Widget* widget, Feature const* const * features)
 			{
-
 				// copy some data to static variables so the subclasses don't have to
 				// bother with it - this is threadsafe since hosts are not allowed
 				// to instantiate the same plugin concurrently
 				s_ctrl = ctrl;
 				s_wfunc = write_func;
-				s_features = features;
+				//s_features = features;
 				s_bundle_path = bundle_path;
 
 				// this is needed to initialise gtkmm stuff in case we're running in
@@ -243,29 +196,23 @@ namespace LV2
 
 			void* m_ctrl;
 			LV2UI_Write_Function m_wfunc;
-			LV2::Feature const* const * m_features;
 			char const* m_bundle_path;
 
 			static void* s_ctrl;
 			static LV2UI_Write_Function s_wfunc;
-			static LV2::Feature const* const * s_features;
 			static char const* s_bundle_path;
 
 	};
 
 	/* Yes, static variables are messy. */
-	template<class Derived, class Ext1, class Ext2, class Ext3, class Ext4, class Ext5, class Ext6, class Ext7, class Ext8, class Ext9>
-	void* GUI<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::s_ctrl = 0;
+	template<class Derived>
+	void* GUI<Derived>::s_ctrl = 0;
 
-	template<class Derived, class Ext1, class Ext2, class Ext3, class Ext4, class Ext5, class Ext6, class Ext7, class Ext8, class Ext9>
-	LV2UI_Write_Function GUI<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::s_wfunc = 0;
+	template<class Derived>
+	LV2UI_Write_Function GUI<Derived>::s_wfunc = 0;
 
-	template<class Derived, class Ext1, class Ext2, class Ext3, class Ext4, class Ext5, class Ext6, class Ext7, class Ext8, class Ext9>
-	LV2::Feature const* const * GUI<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::s_features = 0;
-
-	template<class Derived, class Ext1, class Ext2, class Ext3, class Ext4, class Ext5, class Ext6, class Ext7, class Ext8, class Ext9>
-	char const* GUI<Derived, Ext1, Ext2, Ext3, Ext4, Ext5, Ext6, Ext7, Ext8, Ext9>::s_bundle_path = 0;
-
+	template<class Derived>
+	char const* GUI<Derived>::s_bundle_path = 0;
 }
 
 #endif
