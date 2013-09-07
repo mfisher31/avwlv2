@@ -38,16 +38,16 @@ def configure(conf):
         msg         = check,
         define_name = 'WAF_CXX_FEATURE_' + check.replace(' ', '_').upper(),
         fragment    = '#include <vector>\n'+
-			'struct foo {\n'+
-    			'int i;\n'+
-    			'int j;\n'+
-    			'int k;\n'+
-			'};\n'+
-			'int main() {\n'+
-    			'std::vector<foo> v(1);\n'+
-    			'v[0] = {0, 0, 0};\n'+
-    			'return 0;\n'+
-			'}',
+        'struct foo {\n'+
+            'int i;\n'+
+            'int j;\n'+
+            'int k;\n'+
+        '};\n'+
+        'int main() {\n'+
+            'std::vector<foo> v(1);\n'+
+            'v[0] = {0, 0, 0};\n'+
+            'return 0;\n'+
+        '}',
         mandatory   = False)
     
     # Set env['pluginlib_PATTERN']
@@ -70,9 +70,9 @@ def build_plugin(bld, bundle, name, source, cxxflags=[], libs=[], add_source=[])
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
-        obj.cxxflags = cxxflags
+      obj.cxxflags = cxxflags
     if libs != []:
-	obj.uselib = libs
+      obj.uselib = libs
     obj.install_path = '${LV2DIR}/' + bundle
 
     # Install data file
@@ -90,179 +90,179 @@ def build_plugin_gui(bld, bundle, name, source, cxxflags=[], libs=[], add_source
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
     if cxxflags != []:
-        obj.cxxflags = cxxflags
+      obj.cxxflags = cxxflags
     if libs != []:
-	obj.uselib = libs
+      obj.uselib = libs
     obj.install_path = '${LV2DIR}/' + bundle
 
 
 def build(bld):
-	def do_copy(task):
-		src = task.inputs[0].abspath()
-		tgt = task.outputs[0].abspath()
-		return shutil.copy(src, tgt)
+  def do_copy(task):
+    src = task.inputs[0].abspath()
+    tgt = task.outputs[0].abspath()
+    return shutil.copy(src, tgt)
     
-	for i in bld.path.ant_glob('avw.lv2/*.ttl'):
-		bld(rule   = do_copy,
+  for i in bld.path.ant_glob('avw.lv2/*.ttl'):
+    bld(rule   = do_copy,
             source = i,
             target = bld.path.get_bld().make_node('avw.lv2/%s' % i),
             install_path = '${LV2DIR}/avw.lv2')
 
- 	plugins = '''
-	advenv
-	amp
-	env
-	hztovc
-	lfo_tempo
-	lfo_freq
-	mixer_4ch_audio
-	mixer_4ch_cv
-	mixer_2ch_audio
-	mixer_2ch_cv
-	noise2_audio
-	noise2_cv
-	slew
-	vcalin_audio
-	vcalin_cv
-	vctohz
-	cvs
-	delay
-	absolute
-	inv
-	ringmodulator_audio
-	ringmodulator_cv
-	percussiveenv
-	samplehold
-	vcpanning
-	vcswitch_audio
-	vcswitch_cv
-	mooglpf
-	downsampler_mono
-	downsampler_stereo
-	'''.split()
+  plugins = '''
+  advenv
+  amp
+  env
+  hztovc
+  lfo_tempo
+  lfo_freq
+  mixer_4ch_audio
+  mixer_4ch_cv
+  mixer_2ch_audio
+  mixer_2ch_cv
+  noise2_audio
+  noise2_cv
+  slew
+  vcalin_audio
+  vcalin_cv
+  vctohz
+  cvs
+  delay
+  absolute
+  inv
+  ringmodulator_audio
+  ringmodulator_cv
+  percussiveenv
+  samplehold
+  vcpanning
+  vcswitch_audio
+  vcswitch_cv
+  mooglpf
+  downsampler_mono
+  downsampler_stereo
+  '''.split()
 
-	for i in plugins:
-		build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
-			['-DPLUGIN_CLASS=%s' % i,
-			'-std=c++11',
+  for i in plugins:
+    build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
+      ['-DPLUGIN_CLASS=%s' % i,
+      '-std=c++11',
             '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN'],
-		  	[])
-		  	
-	plugins = '''
-	granulator_mono
-	granulator_stereo
-	beatrepeater_mono
-	beatrepeater_stereo
-	beatslicer_mono
-	beatslicer_stereo
-	'''.split()
+        ['LV2', 'LVTK_PLUGIN'],
+        [])
+        
+    plugins = '''
+    granulator_mono
+    granulator_stereo
+    beatrepeater_mono
+    beatrepeater_stereo
+    beatslicer_mono
+    beatslicer_stereo
+    '''.split()
 
-	for i in plugins:
-		build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
-			['-DPLUGIN_CLASS=%s' % i,
-			'-std=c++11',
+  for i in plugins:
+    build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
+      ['-DPLUGIN_CLASS=%s' % i,
+      '-std=c++11',
             '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN'],
-		  	['src/envgen.cpp'])
+      ['LV2', 'LVTK_PLUGIN'],
+      ['src/envgen.cpp'])
 
-	plugins = '''
-	vco2_audio
-	vco2_cv
-	ad
-	vcf
-	vcaexp_audio
-	vcaexp_cv
-	'''.split()
-	
-	for i in plugins:
-		build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
-			['-DPLUGIN_CLASS=%s' % i,
-			'-std=c++11',
+    plugins = '''
+    vco2_audio
+    vco2_cv
+    ad
+    vcf
+    vcaexp_audio
+    vcaexp_cv
+    '''.split()
+
+  for i in plugins:
+    build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
+      ['-DPLUGIN_CLASS=%s' % i,
+      '-std=c++11',
             '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN'],
-		  	['src/synthdata.cpp'])
-		  
-	plugins_gui = '''
-	samplehold_gui
-	vco2_audio_gui
-	vco2_cv_gui
-	ad_gui
-	vcf_gui
-	vcpanning_gui
-	lfo_freq_gui
-	lfo_tempo_gui
-	slew_gui
-	amp_gui
-	cvs_gui
-	delay_gui
-	hztovc_gui
-	mixer_2ch_audio_gui
-	mixer_2ch_cv_gui
-	mixer_4ch_audio_gui
-	mixer_4ch_cv_gui
-	mooglpf_gui
-	noise2_audio_gui
-	noise2_cv_gui
-	ringmodulator_audio_gui
-	ringmodulator_cv_gui
-	vcaexp_audio_gui
-	vcaexp_cv_gui
-	vcalin_audio_gui
-	vcalin_cv_gui
-	vcswitch_audio_gui
-	vcswitch_cv_gui
-	vctohz_gui
-	downsampler_mono_gui
-	downsampler_stereo_gui
-	granulator_mono_gui
-	granulator_stereo_gui
-	beatrepeater_mono_gui
-	beatrepeater_stereo_gui
-	beatslicer_mono_gui
-	beatslicer_stereo_gui
-	'''.split()
+        ['LV2', 'LVTK_PLUGIN'],
+        ['src/synthdata.cpp'])
+      
+    plugins_gui = '''
+    samplehold_gui
+    vco2_audio_gui
+    vco2_cv_gui
+    ad_gui
+    vcf_gui
+    vcpanning_gui
+    lfo_freq_gui
+    lfo_tempo_gui
+    slew_gui
+    amp_gui
+    cvs_gui
+    delay_gui
+    hztovc_gui
+    mixer_2ch_audio_gui
+    mixer_2ch_cv_gui
+    mixer_4ch_audio_gui
+    mixer_4ch_cv_gui
+    mooglpf_gui
+    noise2_audio_gui
+    noise2_cv_gui
+    ringmodulator_audio_gui
+    ringmodulator_cv_gui
+    vcaexp_audio_gui
+    vcaexp_cv_gui
+    vcalin_audio_gui
+    vcalin_cv_gui
+    vcswitch_audio_gui
+    vcswitch_cv_gui
+    vctohz_gui
+    downsampler_mono_gui
+    downsampler_stereo_gui
+    granulator_mono_gui
+    granulator_stereo_gui
+    beatrepeater_mono_gui
+    beatrepeater_stereo_gui
+    beatslicer_mono_gui
+    beatslicer_stereo_gui
+    '''.split()
 
-	for i in plugins_gui:
-		build_plugin_gui(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
-			['-DPLUGIN_CLASS=%s' % i,
-		  	'-std=c++11',
+  for i in plugins_gui:
+    build_plugin_gui(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
+      ['-DPLUGIN_CLASS=%s' % i,
+        '-std=c++11',
             '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-			['src/dial.cpp', 'src/labeleddial.cpp'])
+        ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+      ['src/dial.cpp', 'src/labeleddial.cpp'])
 
-	build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
-		['-DPLUGIN_CLASS=env_gui',
-		'-std=c++11',
-        '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
-        '-DPLUGIN_URI_SUFFIX="env_gui"',
-        '-DPLUGIN_HEADER="src/env_gui.hpp"'],
-		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/dial.cpp', 'src/labeleddial.cpp', 'src/env_gui_scope.cpp'])
-		
-	build_plugin_gui(bld, 'avw.lv2', 'percussiveenv_gui', ['src/percussiveenv_gui.cpp'],
-		['-DPLUGIN_CLASS=percussiveenv_gui',
-		'-std=c++11',
-        '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
-        '-DPLUGIN_URI_SUFFIX="percussiveenv_gui"',
-        '-DPLUGIN_HEADER="src/percussiveenv_gui.hpp"'],
-		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/dial.cpp', 'src/labeleddial.cpp', 'src/percussiveenv_gui_scope.cpp'])
-				  
-	build_plugin_gui(bld, 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
-		['-DPLUGIN_CLASS=advenv_gui',
-		'-std=c++11',
-		'-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
-		'-DPLUGIN_URI_SUFFIX="advenv_gui"',
-		'-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
-		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/dial.cpp', 'src/labeleddial.cpp', 'src/advenv_gui_scope.cpp'])
-		
+    build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
+      ['-DPLUGIN_CLASS=env_gui',
+      '-std=c++11',
+          '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
+          '-DPLUGIN_URI_SUFFIX="env_gui"',
+          '-DPLUGIN_HEADER="src/env_gui.hpp"'],
+      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+      ['src/dial.cpp', 'src/labeleddial.cpp', 'src/env_gui_scope.cpp'])
+      
+    build_plugin_gui(bld, 'avw.lv2', 'percussiveenv_gui', ['src/percussiveenv_gui.cpp'],
+      ['-DPLUGIN_CLASS=percussiveenv_gui',
+      '-std=c++11',
+          '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
+          '-DPLUGIN_URI_SUFFIX="percussiveenv_gui"',
+          '-DPLUGIN_HEADER="src/percussiveenv_gui.hpp"'],
+      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+      ['src/dial.cpp', 'src/labeleddial.cpp', 'src/percussiveenv_gui_scope.cpp'])
+            
+    build_plugin_gui(bld, 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
+      ['-DPLUGIN_CLASS=advenv_gui',
+      '-std=c++11',
+      '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
+      '-DPLUGIN_URI_SUFFIX="advenv_gui"',
+      '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
+      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+      ['src/dial.cpp', 'src/labeleddial.cpp', 'src/advenv_gui_scope.cpp'])
+      
