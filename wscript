@@ -139,6 +139,9 @@ def build(bld):
   mooglpf
   downsampler_mono
   downsampler_stereo
+  controltocv
+  cvtocontrol
+  amplitude
   '''.split()
 
   for i in plugins:
