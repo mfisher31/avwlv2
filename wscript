@@ -7,7 +7,7 @@ from waflib.extras import autowaf as autowaf
 
 # Variables for 'waf dist'
 APPNAME = 'avw.lv2'
-VERSION = '0.1.5'
+VERSION = '0.1.6'
 
 # Mandatory variables
 top = '.'
@@ -239,33 +239,33 @@ def build(bld):
             '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-        ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
       ['src/dial.cpp', 'src/labeleddial.cpp'])
 
-    build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
-      ['-DPLUGIN_CLASS=env_gui',
+  build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
+    ['-DPLUGIN_CLASS=env_gui',
       '-std=c++11',
           '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
           '-DPLUGIN_URI_SUFFIX="env_gui"',
           '-DPLUGIN_HEADER="src/env_gui.hpp"'],
-      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-      ['src/dial.cpp', 'src/labeleddial.cpp', 'src/env_gui_scope.cpp'])
+    ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+    ['src/dial.cpp', 'src/labeleddial.cpp', 'src/env_gui_scope.cpp'])
       
-    build_plugin_gui(bld, 'avw.lv2', 'percussiveenv_gui', ['src/percussiveenv_gui.cpp'],
-      ['-DPLUGIN_CLASS=percussiveenv_gui',
-      '-std=c++11',
-          '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
-          '-DPLUGIN_URI_SUFFIX="percussiveenv_gui"',
-          '-DPLUGIN_HEADER="src/percussiveenv_gui.hpp"'],
-      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-      ['src/dial.cpp', 'src/labeleddial.cpp', 'src/percussiveenv_gui_scope.cpp'])
+  build_plugin_gui(bld, 'avw.lv2', 'percussiveenv_gui', ['src/percussiveenv_gui.cpp'],
+    ['-DPLUGIN_CLASS=percussiveenv_gui',
+     '-std=c++11',
+         '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
+         '-DPLUGIN_URI_SUFFIX="percussiveenv_gui"',
+         '-DPLUGIN_HEADER="src/percussiveenv_gui.hpp"'],
+    ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+    ['src/dial.cpp', 'src/labeleddial.cpp', 'src/percussiveenv_gui_scope.cpp'])
             
-    build_plugin_gui(bld, 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
-      ['-DPLUGIN_CLASS=advenv_gui',
-      '-std=c++11',
-      '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
-      '-DPLUGIN_URI_SUFFIX="advenv_gui"',
-      '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
-      ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-      ['src/dial.cpp', 'src/labeleddial.cpp', 'src/advenv_gui_scope.cpp'])
+  build_plugin_gui(bld, 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
+    ['-DPLUGIN_CLASS=advenv_gui',
+     '-std=c++11',
+         '-DURI_PREFIX=\"http://avwlv2.sourceforge.net/plugins/avw/\"',
+         '-DPLUGIN_URI_SUFFIX="advenv_gui"',
+         '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
+    ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+    ['src/dial.cpp', 'src/labeleddial.cpp', 'src/advenv_gui_scope.cpp'])
       

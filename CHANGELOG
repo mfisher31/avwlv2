@@ -1,3 +1,5 @@
+0.1.6:
+	* Bug fix on wscript
 0.1.5:
 	* A small plugin to convert Ingen Control to VC ('0 to 1' to '-1 to 1') REMOVED because it is now possible in Ingen
 	* A new LFO to be controlled via Freq, not Tempo
