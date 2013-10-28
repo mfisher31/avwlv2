@@ -9,10 +9,14 @@
 @prefix work:   <http://lv2plug.in/ns/ext/worker#> .
 @prefix lvtkp:  <http://lvtoolkit.org/plugins/> .
 
-
 <http://avwlv2.sourceforge.net/plugins/avw/scope/gui>
-  	a guiext:GtkUI ;
-  	guiext:binary <scope_gui.so> .
+        a guiext:GtkUI ;
+        guiext:binary <scope_gui.so> ;
+        guiext:portNotification [
+            guiext:plugin <http://avwlv2.sourceforge.net/plugins/avw/scope> ;
+            lv2:symbol "notify" ;
+            guiext:notifyType atom:Float
+        ] .
 
 <http://avwlv2.sourceforge.net/plugins/avw/scope>
 	a lv2:Plugin, lv2:AnalyserPlugin ;
@@ -20,9 +24,9 @@
 	doap:name "Scope" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
-	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/scope/gui> ;
-	lv2:optionalFeature lv2:hardRTCapable ;
-    lv2:extensionData opts:interface ;
+        guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/scope/gui> ;
+        lv2:optionalFeature lv2:hardRTCapable ;
+        lv2:extensionData opts:interface ;
 	lv2:port [
 		a lv2:InputPort, lv2:AudioPort ;
 		lv2:index 0 ;
@@ -30,11 +34,11 @@
 		lv2:name "Input" ;
 		lv2:default 0.0 ;
 		lv2:minimum -1.0 ;
-        lv2:maximum 1.0 ;
+                lv2:maximum 1.0 ;
 	] , [
-   		a lv2:OutputPort, atom:AtomPort ;
+                a lv2:OutputPort, atom:AtomPort ;
 		atom:bufferType atom:Sequence ;
-		atom:supports <http://lv2plug.in/ns/ext/patch#Message> ;
+                atom:supports atom:Float ;
 		lv2:index 1 ;
 		lv2:symbol "notify" ;
 		lv2:name "Notify" ;

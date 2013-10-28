@@ -13,9 +13,12 @@ class Scope: public Plugin<Scope, URID<true>, Options<true>>
 {
 public:
     Scope(double rate);
+    ~Scope();
+
     void run(uint32_t nframes);
 
 private:
+
     AtomForge *m_forge;
     ForgeFrame m_notify_frame;
 

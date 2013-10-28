@@ -8,25 +8,29 @@
 
 using namespace lvtk;
 
-Scope::Scope(double rate) : Plugin<Scope, URID<true>, Options<true>>(p_n_ports)
+Scope::Scope(double /* rate */) : Plugin<Scope, URID<true>, Options<true>>(p_n_ports)
 {
-    m_forge = new AtomForge(p_map);
+    m_forge = new AtomForge (p_map);
 }
 
-void Scope::run(uint32_t nframes)
+Scope::~Scope()
 {
-    // you're sending things in an atom sequence so get the size information
-    // from the port buffer
+    if (m_forge)
+        delete m_forge;
+}
 
+void Scope::run (uint32_t /* nframes */)
+{    
     LV2_Atom_Sequence* aseq = (LV2_Atom_Sequence*) p (p_notify);
     m_forge->set_buffer ((uint8_t*) aseq, aseq->atom.size);
-
-    m_forge->sequence_head(m_notify_frame, 0);
+    m_forge->sequence_head (m_notify_frame, 0);
 
     // sequences need a timestamp for each event added
-    m_forge->frame_time(0);
+    m_forge->frame_time (0);
 
-    m_forge->write_float(1604);
+    // send a float
+    m_forge->write_float (1604);
+
 }
 
 static int _ = Scope::register_class("http://avwlv2.sourceforge.net/plugins/avw/scope");

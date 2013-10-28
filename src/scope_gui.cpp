@@ -52,7 +52,21 @@ ScopeGUI::ScopeGUI(const std::string& URI)
 
 void ScopeGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
-    std::cout << port << " - " << format << std::endl;
+    const uint32_t event_xfer = this->map (LV2_ATOM__eventTransfer);
+    const uint32_t atom_float = this->map (LV2_ATOM__Float);
+
+    std::cout << "ScopeGUI::port_event: port: " << port << " format: " << unmap (format) << std::endl;
+
+    if (event_xfer == format)
+    {
+        Atom atom (buffer);
+        std::cout << "  It's an Atom: " << unmap (atom.type()) << std::endl;
+        if (atom.type() == atom_float) {
+            std::cout << "  Float Value: " << atom.as_float() << std::endl;
+        } else {
+            std::cout << "  Unexpected Atom Type received\n";
+        }
+    }
 }
 
 static int _ = ScopeGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/scope/gui");
