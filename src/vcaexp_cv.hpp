@@ -5,7 +5,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcaexp_cv.peg"
+#include "vcaexp_cv_ttl.hpp"
 
 using namespace lvtk;
 

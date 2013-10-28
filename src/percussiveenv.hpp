@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "percussiveenv.peg"
+#include "percussiveenv_ttl.hpp"
 
 using namespace lvtk;
 

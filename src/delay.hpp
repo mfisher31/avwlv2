@@ -5,7 +5,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "delay.peg"
+#include "delay_ttl.hpp"
 
 using namespace lvtk;
 

@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "ringmodulator_cv.peg"
+#include "ringmodulator_cv_ttl.hpp"
 
 using namespace lvtk;
 

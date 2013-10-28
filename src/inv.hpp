@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "inv.peg"
+#include "inv_ttl.hpp"
 
 using namespace lvtk;
 

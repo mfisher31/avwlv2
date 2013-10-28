@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcpanning.peg"
+#include "vcpanning_ttl.hpp"
 
 using namespace lvtk;
 

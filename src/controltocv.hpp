@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "controltocv.peg"
+#include "controltocv_ttl.hpp"
 
 using namespace lvtk;
 

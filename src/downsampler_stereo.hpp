@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "downsampler_stereo.peg"
+#include "downsampler_stereo_ttl.hpp"
 
 using namespace lvtk;
 

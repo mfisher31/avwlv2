@@ -4,7 +4,7 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "synthdata.hpp"
-#include "ad.peg"
+#include "ad_ttl.hpp"
 
 using namespace lvtk;
 

@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "lfo_tempo.peg"
+#include "lfo_tempo_ttl.hpp"
 
 using namespace lvtk;
 

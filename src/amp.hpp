@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "amp.peg"
+#include "amp_ttl.hpp"
 
 using namespace lvtk;
 

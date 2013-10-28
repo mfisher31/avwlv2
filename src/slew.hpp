@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "slew.peg"
+#include "slew_ttl.hpp"
 
 using namespace lvtk;
 

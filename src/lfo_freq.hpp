@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "lfo_freq.peg"
+#include "lfo_freq_ttl.hpp"
 
 using namespace lvtk;
 

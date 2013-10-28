@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "mixer_2ch_audio.peg"
+#include "mixer_2ch_audio_ttl.hpp"
 
 using namespace lvtk;
 

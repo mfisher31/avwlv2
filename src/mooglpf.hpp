@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "mooglpf.peg"
+#include "mooglpf_ttl.hpp"
 
 using namespace lvtk;
 

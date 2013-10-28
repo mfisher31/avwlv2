@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "cvs.peg"
+#include "cvs_ttl.hpp"
 
 using namespace lvtk;
 

@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "absolute.peg"
+#include "absolute_ttl.hpp"
 
 using namespace lvtk;
 

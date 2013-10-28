@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcswitch_audio.peg"
+#include "vcswitch_audio_ttl.hpp"
 
 using namespace lvtk;
 

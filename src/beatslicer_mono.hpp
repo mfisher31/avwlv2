@@ -4,7 +4,7 @@
 #include <deque>
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "beatslicer_mono.peg"
+#include "beatslicer_mono_ttl.hpp"
 
 using namespace lvtk;
 using namespace std;

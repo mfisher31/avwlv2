@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "granulator_stereo.peg"
+#include "granulator_stereo_ttl.hpp"
 
 using namespace lvtk;
 

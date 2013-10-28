@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "amplitude.peg"
+#include "amplitude_ttl.hpp"
 
 using namespace lvtk;
 

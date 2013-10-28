@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "granulator_mono.peg"
+#include "granulator_mono_ttl.hpp"
 
 using namespace lvtk;
 

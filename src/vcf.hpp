@@ -5,7 +5,7 @@
 
 #include "synthdata.hpp"
 
-#include "vcf.peg"
+#include "vcf_ttl.hpp"
 
 using namespace lvtk;
 

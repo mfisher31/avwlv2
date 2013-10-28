@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "downsampler_mono.peg"
+#include "downsampler_mono_ttl.hpp"
 
 using namespace lvtk;
 

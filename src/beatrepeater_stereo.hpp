@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "beatrepeater_stereo.peg"
+#include "beatrepeater_stereo_ttl.hpp"
 
 using namespace lvtk;
 using namespace std;

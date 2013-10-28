@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcalin_cv.peg"
+#include "vcalin_cv_ttl.hpp"
 
 using namespace lvtk;
 

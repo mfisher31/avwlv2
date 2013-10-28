@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcswitch_cv.peg"
+#include "vcswitch_cv_ttl.hpp"
 
 using namespace lvtk;
 

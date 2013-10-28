@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "mixer_4ch_cv.peg"
+#include "mixer_4ch_cv_ttl.hpp"
 
 using namespace lvtk;
 

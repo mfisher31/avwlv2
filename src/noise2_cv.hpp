@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "noise2_cv.peg"
+#include "noise2_cv_ttl.hpp"
 
 using namespace lvtk;
 

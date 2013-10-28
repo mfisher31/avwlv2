@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "hztovc.peg"
+#include "hztovc_ttl.hpp"
 
 using namespace lvtk;
 

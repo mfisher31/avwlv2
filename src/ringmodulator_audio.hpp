@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "ringmodulator_audio.peg"
+#include "ringmodulator_audio_ttl.hpp"
 
 using namespace lvtk;
 

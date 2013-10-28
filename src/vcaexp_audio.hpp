@@ -5,7 +5,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcaexp_audio.peg"
+#include "vcaexp_audio_ttl.hpp"
 
 using namespace lvtk;
 

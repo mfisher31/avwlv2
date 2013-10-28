@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "advenv.peg"
+#include "advenv_ttl.hpp"
 
 using namespace lvtk;
 

@@ -4,7 +4,7 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "synthdata.hpp"
-#include "vco2_cv.peg"
+#include "vco2_cv_ttl.hpp"
 
 using namespace lvtk;
 

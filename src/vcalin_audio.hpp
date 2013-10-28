@@ -3,7 +3,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcalin_audio.peg"
+#include "vcalin_audio_ttl.hpp"
 
 using namespace lvtk;
 
